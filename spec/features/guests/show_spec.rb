@@ -11,17 +11,17 @@ RSpec.describe 'Guest Show' do
         RoomGuest.create!(room: room_1, guest: guest )
         RoomGuest.create!(room: room_2, guest: guest )
 
-        visit "/rooms/#{guest.id}"
+        visit "/guests/#{guest.id}"
 
-        expect(page).to have_content("name: #{guest.name}")
+        expect(page).to have_content("Name: #{guest.name}")
         
         within('.rooms') {
           expect(page).to have_content(room_1.suite)
           expect(page).to have_content(room_1.rate)
-          # expect(page).to have_content(room_1.hotel)
+          expect(page).to have_content(room_1.hotel.name)
           expect(page).to have_content(room_2.suite)
           expect(page).to have_content(room_2.rate)
-          # expect(page).to have_content(room_2.name)
+          expect(page).to have_content(room_2.hotel.name)
        
         }
       end
