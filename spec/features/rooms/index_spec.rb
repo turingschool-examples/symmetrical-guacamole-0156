@@ -27,7 +27,7 @@ RSpec.describe 'the rooms index page' do
         guestroom8 = GuestRoom.create!(guest: keith, room: emperor )
 
         visit "/rooms/"
-        save_and_open_page
+     
         expect(page).to have_content("Suite: #{pres.suite}, Nightly Rate: #{pres.rate}, Hotel: #{pres.hotel.name}, Guest count: #{pres.guests.count_guests}")
         expect(page).to have_content("Suite: #{king.suite}, Nightly Rate: #{king.rate}, Hotel: #{king.hotel.name}, Guest count: #{king.guests.count_guests}")
         expect(page).to have_content("Suite: #{poor.suite}, Nightly Rate: #{poor.rate}, Hotel: #{poor.hotel.name}, Guest count: #{poor.guests.count_guests}")
