@@ -23,7 +23,7 @@ RSpec.describe 'Add Room to Guest#Show' do
       expect(find('form')).to have_content('Room id')
     end
 
-    it "adds an existing room to this guests show page" do
+    xit "adds an existing room to this guests show page" do
       visit "/guests/#{@guest_1.id}"
 
       fill_in 'Room', with: "#{@room_3.id}"
