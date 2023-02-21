@@ -41,7 +41,7 @@ RSpec.describe "Show", type: :feature do
         fill_in :room_id, with: pres.id
         click_on "Submit"
         
-        # save_and_open_page
+        save_and_open_page
         expect(current_path).to eq("/guests/#{jimmy.id}")
         expect(page).to have_content("Suite: Presidential Room")
       end
