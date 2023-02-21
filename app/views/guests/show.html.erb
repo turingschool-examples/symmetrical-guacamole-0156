@@ -1,0 +1,16 @@
+<h1><%= @guest.name %></h1>
+
+<ul id='rooms'>
+	<% @rooms.each do |room| %>
+		<li>
+			<%= room.suite %>: <%= room.rate %> - <%= room.hotel.name %>
+		</li>
+	<% end %>
+</ul>
+
+<div id='room_form'>
+	<%= form_with url: "/room_guests/#{@guest.id}", method: :post, local: true do |f| %>
+		<%= f.collection_select :room_id, @all_rooms, :id, :id %>
+		<%= f.submit 'Add Room' %>
+	<% end %>
+</div>
