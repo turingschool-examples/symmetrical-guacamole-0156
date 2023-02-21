@@ -14,8 +14,6 @@ describe "When I visit a guest's show page", type: :feature do
 
     GuestRoom.create!(guest: @jasmine, room: @penthouse)
     GuestRoom.create!(guest: @jasmine, room: @king)
-    GuestRoom.create!(guest: @ivan, room: @penthouse)
-    GuestRoom.create!(guest: @ivan, room: @double_queen)
   end
 
   describe 'User Story 1' do
@@ -40,6 +38,43 @@ describe "When I visit a guest's show page", type: :feature do
         expect(page).to have_content("Nightly Rate: $#{@king.rate}")
         expect(page).to have_content("Hotel: #{@hilton.name}")
       end
+
+      expect(page).to_not have_content(@double_queen.suite)
+    end
+  end
+
+  describe 'User Story 2' do
+    it "has a form to add a room to the guest using the room ID" do
+      visit "/guests/#{@jasmine.id}"
+
+      within "#add_a_room" do
+        expect(page).to have_field(:room_id)
+        expect(page).to have_button("Submit")
+      end
+    end
+
+    it "redirects to the guest show page after filling in the field with an exisitng room ID and clicking submit" do
+      visit "/guests/#{@jasmine.id}"
+
+      within "#add_a_room" do
+        fill_in :room_id, with: @double_queen.id
+        click_button "Submit"
+      end
+
+      expect(current_path).to eq("/guests/#{@jasmine.id}")
+    end
+
+    it "displays the added room after the form is submitted" do
+      visit "/guests/#{@jasmine.id}"
+
+      within "#add_a_room" do
+        fill_in :room_id, with: @double_queen.id
+        click_button "Submit"
+      end
+
+      expect(page).to have_content("Suite: #{@double_queen.suite}")
+      expect(page).to have_content("Nightly Rate: $#{@double_queen.rate}")
+      expect(page).to have_content("Hotel: #{@double_tree.name}")
     end
   end
 end
