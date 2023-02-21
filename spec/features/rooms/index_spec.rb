@@ -16,6 +16,7 @@ RSpec.describe "index", type: :feature do
     
     visit "/rooms"
   end
+
   describe "when I visit the room index page" do
     context "I see"
       it 'a list of all rooms, their hotel, and nightly rate' do
@@ -28,12 +29,13 @@ RSpec.describe "index", type: :feature do
       end
 
       it 'the number of guests that have stayed in the rooms' do
-        within '.bum' do
+        
+        within "#room-#{bum.id}" do
           expect(page).to have_content("Number of guests: 1")
           expect(page).not_to have_content("Number of guests: 2")
         end
 
-        within '.shack' do
+        within "#room-#{shack.id}" do
           expect(page).to have_content("Number of guests: 2")
           expect(page).not_to have_content("Number of guests: 1")
         end
