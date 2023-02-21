@@ -1,0 +1,10 @@
+<h1>Rooms Index</h1>
+
+<% @rooms.each do |room| %>
+  <div class="room" id="room-<%= room.id %>">
+    <h3><%= "Suite: #{room.suite}" %></h3>
+    <p><%= "Rate: #{room.rate}" %></p>
+    <p><%= "Hotel: #{room.hotel.name}" %></p>
+    <p><%= "Number of Guests Stayed: #{room.guests.total_guests}" %></p>
+  </div>
+<% end %>
