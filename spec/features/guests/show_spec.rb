@@ -39,7 +39,7 @@ RSpec.describe 'the guest show page' do
   
         fill_in("Room ID", with: poor.id)
         click_button("Submit")
-       save_and_open_page
+   
         expect(current_path).to eq("/guests/#{matt.id}")
         expect(page).to have_content("The Grand Budapest Hotel")
         expect(page).to have_content("Poor")
