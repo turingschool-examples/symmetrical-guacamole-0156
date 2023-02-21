@@ -3,3 +3,8 @@
   <li><%= room.suite %>- Rate: <%= room.rate %>, Hotel: <%= room.hotel.name %></li>
 <% end %>
 </ul>
+
+<%= form_tag("/guests/#{@guest.id}", method: :patch, local: true) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ('Submit') %>
+  <% end %>
