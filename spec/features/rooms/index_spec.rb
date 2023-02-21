@@ -41,7 +41,6 @@ RSpec.describe Room, type: :feature do
 
     end
     it "displays the number of guests that have stayed in that room" do
-      save_and_open_page
        within "#room_info-#{room_1.id}" do 
         expect(page).to have_content("Suite: #{room_1.suite}\nRate: #{room_1.rate}\nHotel: Comfy Palace\nNumber of Guests: 3")
       end
