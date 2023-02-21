@@ -9,6 +9,8 @@ RSpec.describe 'Show', type: :feature do
 
   let!(:presedential) { echo.rooms.create!(rate: 125, suite: "Presedential") }
   let!(:b27) { winterpark.rooms.create!(rate: 60, suite: "b27") }
+  let!(:e42) { winterpark.rooms.create!(rate: 80, suite: "e42") }
+
 
   before do
     GuestRoom.create!(guest: andra, room: presedential)
@@ -22,7 +24,6 @@ RSpec.describe 'Show', type: :feature do
     describe 'Story 1' do
       it 'I see the guest`s name' do
         expect(page).to have_content("Andra's Rooms Stayed In")
-        save_and_open_page
       end
 
       it 'I see guest`s list of rooms, the room`s suite, nightly rate, & name of hotel it belongs to' do
@@ -33,7 +34,29 @@ RSpec.describe 'Show', type: :feature do
         expect(page).to have_content("Hotel: Winter Park Hotel")
         expect(page).to have_content("Suite: b27")
         expect(page).to have_content("Rate: 60")
-        save_and_open_page
+      end
+    end
+
+    describe "Story 2" do
+      describe 'I see a form to add a room to this guest' do
+        describe 'I fill in a field with the id of an existing room and click submit' do
+          it 'I am redirected back to the guest`s show page and see the room listed' do
+
+            # save_and_open_page
+            expect(page).to have_content("Add a Room to this Guest:")
+
+            expect(page).to have_field(:room_id)
+            expect(page).to have_button("Submit")
+
+            fill_in :room_id, with: e42.id
+            click_on "Submit"
+
+            expect(current_path).to eq("/guests/#{andra.id}")
+            expect(page).to have_content("Hotel: Winter Park Hotel")
+            expect(page).to have_content("Suite: e42")
+            expect(page).to have_content("Rate: 80")
+          end
+        end
       end
     end
   end

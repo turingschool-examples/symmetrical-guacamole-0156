@@ -1,14 +1,19 @@
 <h1><%= @guest.name %>'s Rooms Stayed In</h1>
 <br>
-<%# <%= @hotels.each do |hotel| %>
-  <%# <%= hotel.name %>
-    <% @rooms.each do |room| %>
-      Hotel: <%= room.hotel.name %>
-      <br>
-      Suite: <%= room.suite %>
-      <br>
-      Rate: <%= room.rate %>
-    <br>
-    <br>
-  <% end %>
-<%# <% end %>
+
+<% @rooms.each do |room| %>
+  Hotel: <%= room.hotel.name %>
+  <br>
+  Suite: <%= room.suite %>
+  <br>
+  Rate: <%= room.rate %>
+  <br>
+  <br>
+<% end %>
+
+<h2>Add a Room to this Guest:</h2>
+<%= form_with url: "/guests/#{@guest.id}/rooms", method: :post, local: true do |f| %>
+  <%= f.label "ID: " %>
+  <%= f.number_field :room_id %>
+  <%= f.submit "Submit" %>
+<% end %>
