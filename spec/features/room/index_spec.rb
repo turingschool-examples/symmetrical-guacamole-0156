@@ -20,7 +20,7 @@ describe 'room index' do
       visit '/rooms'
       expect(page).to have_content(room1.suite)
       expect(page).to have_content(room1.rate)
-      expect(page).to have_content(room1.hotel)
+      expect(page).to have_content(room1.hotel_name)
       expect(page).to have_content(room1.number_of_guests)
 
       expect(page).to have_content(room2.suite)

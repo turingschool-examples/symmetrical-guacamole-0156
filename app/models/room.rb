@@ -4,10 +4,10 @@ class Room < ApplicationRecord
    has_many :guests, through: :guest_rooms
 
    def hotel_name
-      Hotel.find(hotel_id).name
+     hotel.name
    end
 
    def number_of_guests
-      guests.distinct.count
+     guests.distinct.count
    end
 end
