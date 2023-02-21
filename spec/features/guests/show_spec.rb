@@ -24,7 +24,7 @@ RSpec.describe "Guest Show Page" do
     end
 
     it "I should see a list of all the rooms" do
-      save_and_open_page
+      # save_and_open_page
       expect(page).to have_content("Room: Presidential")
       expect(page).to have_content("Rate: 125")
       expect(page).to have_content("Hotel Name: Echo Mountain Inn")
@@ -33,4 +33,26 @@ RSpec.describe "Guest Show Page" do
       expect(page).to have_content("Hotel Name: Everest View Hotel")
     end
   end
+
+    #   Story 2
+
+    # When I fill in a field with the id of an existing room
+    # And I click submit
+
+    # Then I am redirected back to the guest's show page
+
+    # And I see the room now listed under this guest's rooms.
+
+    describe "When I visit /guests/:id" do
+      it "I should see a form to add a room to this guest" do
+        # save_and_open_page
+
+        fill_in :room_id, with: charlize.id
+        click_on "Submit"
+
+        expect(current_path).to eq("/guests/#{charlize.id}")
+        expect(page).to have_field(:room_id)
+        expect(page).to have_button("Submit")
+      end
+    end
 end

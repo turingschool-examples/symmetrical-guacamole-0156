@@ -12,3 +12,11 @@
   <p>Hotel Name: <%= room.hotel.name %></p>
   <% end %> 
 </ul>
+
+<h3>Guest Form:</h3>
+
+<%= form_with url: "/guests/#{@guest.id}/guest_rooms", method: :post, local: true do |f| %>
+  <%= f.label "ID: " %>
+  <%= f.number_field :room_id %>
+  <%= f.submit "Submit" %>
+<% end %>
