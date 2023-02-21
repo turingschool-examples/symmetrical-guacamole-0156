@@ -30,6 +30,9 @@ RSpec.describe "Show", type: :feature do
       end
 
       it "When I fill in a field with the id of an existing room And I click submit. Then I am redirected back to the guest's show page. And I see the room now listed under this guest's rooms." do
+        expect(page).to_not have_content("Room Name: Honeymoon")
+        expect(page).to_not have_content("Rate: 250")
+        
         fill_in :room_id, with: "#{@room3.id}"
         click_on "Submit"
 
