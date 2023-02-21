@@ -22,6 +22,9 @@ RSpec.describe 'hotels show page' do
       
       expect(page).to_not have_content("Loveland Hotel")
       expect(page).to have_content("List of guests who have stayed at #{hotel1.name}")
+      expect(page).to have_content("Charlize Theron")
+      expect(page).to have_content("Tim Allen")
+    save_and_open_page
     end
   end
 end

@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
-  def index
+  def show
     @hotel = Hotel.find(params[:id])
-    binding.pry
+    @hotel_guests = @hotel.list_of_guests
   end
 end
