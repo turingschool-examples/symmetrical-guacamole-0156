@@ -33,11 +33,9 @@ RSpec.describe Guest, type: :feature do
     end
 
     it 'can add a room to the guest' do 
-      save_and_open_page
-
       fill_in 'room_id', with: "#{room_3.id}" 
       click_on 'Submit'
-require 'pry'; binding.pry
+
       expect(page).to have_content("Suite: #{room_3.suite}\nRate: #{room_3.rate}\nHotel: Comfy Palace")
     end
   end

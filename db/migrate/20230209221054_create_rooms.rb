@@ -4,7 +4,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
       t.integer :rate
       t.string :suite
       t.references :hotel, foreign_key: true
-
+  
       t.timestamps
     end
   end
