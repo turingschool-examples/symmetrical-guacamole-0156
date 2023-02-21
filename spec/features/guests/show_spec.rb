@@ -27,12 +27,21 @@ RSpec.describe "Guest Show Page" do
   describe 'When visiting a guest show page' do 
     it 'has the guests name and all the rooms they stayed in(suite, rate and hotel)' do 
       visit "/guests/#{@guest_1.id}"
-
-      within(".guest_rooms_details") do 
-        expect(page).to have_content(@room_1.name)
-        expect(page).to have_content(@room_2.name)
+      
+      expect(page).to have_content("Kimberly Kimbers")
+      expect(page).to_not have_content(@guest_2.name)
+      
+      within("##{@room_1.id}") do 
+        expect(page).to have_content(@room_1.suite)
+        expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@hotel_1.name)
-        expect(page).to_not have_content(@room_3.name)
+        expect(page).to_not have_content(@room_4.rate)
+      end
+
+      within("##{@room_2.id}") do 
+        expect(page).to have_content(@room_2.suite)
+        expect(page).to have_content(@room_2.rate)
+        expect(page).to have_content(@hotel_1.name)
         expect(page).to_not have_content(@room_4.rate)
       end
     end
