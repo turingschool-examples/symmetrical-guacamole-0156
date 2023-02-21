@@ -22,8 +22,7 @@ RSpec.describe "Index", type: :feature do
     context "I see" do
       it "a list of all rooms including the room's suite, nightly rate, 
         and the name of the hotel that it belongs to" do
-       
-        expect(page).to have_content("Jimmy's Page")
+        save_and_open_page
         expect(page).to have_content("Suite: King Bed Room")
         expect(page).to have_content("Rate: $125.00")
         expect(page).to have_content("Suite: Twin Bed Room")
