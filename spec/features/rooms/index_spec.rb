@@ -37,6 +37,15 @@ RSpec.describe "Rooms Index Page" do
         expect(page).to_not have_content("Rate: 400")
         expect(page).to_not have_content("rate: 500")
       end
+
+      within("##{@room_3.id}") do 
+        expect(page).to have_content(@room_3.suite)
+        expect(page).to have_content("Rate: 50")
+        expect(page).to have_content("Number of Guests: 1")
+        expect(page).to have_content(@hotel_2.name)
+        expect(page).to_not have_content("Rate: 400")
+        expect(page).to_not have_content("rate: 500")
+      end
     end
   end
 end
