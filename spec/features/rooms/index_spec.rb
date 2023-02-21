@@ -47,9 +47,7 @@ RSpec.describe 'When a user visit a rooms index page', type: :feature do
 			expect(page).to have_content("Total Guests: 1")
 		end			
 		
-		within "div#room-#{@pent.id}" do
-		save_and_open_page
-		
+		within "div#room-#{@pent.id}" do		
 			expect(page).to have_content("Total Guests: 3")
 		end	
 	end
