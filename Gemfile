@@ -39,10 +39,16 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'capybara'
+  gem 'simplecov' # must add block to rails helper 1. require 'simplecov' 2. SimpleCov.start 'rails'
+  gem 'net-http' # Prevents massive test returns
+
+  gem 'capybara' # https://github.com/teamcapybara/capybara
+  gem 'shoulda-matchers' # https://github.com/thoughtbot/shoulda-matchers
   gem 'launchy'
-  gem 'simplecov'
+  gem 'orderly'
+
+  gem 'factory_bot_rails' # https://github.com/thoughtbot/factory_bot_rails
+  gem 'faker' # https://github.com/faker-ruby/faker
 end
 
 group :development do
