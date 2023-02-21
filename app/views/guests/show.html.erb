@@ -7,3 +7,9 @@
     <br>
   <% end %>
 </ul>
+  
+<%= form_with url: "/guests/#{@guest.id}", method: :post, local: true do |form|  %>
+  <p><%= form.label :room_id, "Book a New Room:" %><br></p>
+  <p><%= form.text_field :room_id %>
+  <%= form.submit "Submit" %></p>
+<% end %>
