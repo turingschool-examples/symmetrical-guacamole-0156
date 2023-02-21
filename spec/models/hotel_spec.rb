@@ -24,6 +24,7 @@ RSpec.describe Hotel, type: :model do
     guest_room1 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
     guest_room2 = GuestRoom.create!(room_id: room1.id, guest_id: danny.id)
     guest_room3 = GuestRoom.create!(room_id: room1.id, guest_id: mark.id)
+    guest_room4 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
     expect(budapest.guests.sort).to eq([charlize, danny, mark].sort)
   end
 end
