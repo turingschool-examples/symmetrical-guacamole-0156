@@ -43,5 +43,12 @@ RSpec.describe '/guests/:id', type: :feature do
       expect(page).to have_content("#{@room4.suite} - rate: $#{@room4.rate}/night, hotel: #{@hotel2.name}")
     end
 
+    it "can post error message" do
+      fill_in("Book a New Room:", with: "Dorm Room 55")
+      click_button("Submit")
+
+      expect(page).to have_content("Room must exist")
+    end
+
   end
 end
