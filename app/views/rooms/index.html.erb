@@ -1,0 +1,5 @@
+<h1>Rooms Index</h1>
+<h3> All Rooms: </h3>
+<% @rooms.each do |room| %>
+  <p><%= "Suite: #{room.suite}, Nightly Rate: #{room.rate}, Hotel: #{room.hotel.name}, Guest count: #{room.guests.count_guests} " %></p>
+<% end %>
