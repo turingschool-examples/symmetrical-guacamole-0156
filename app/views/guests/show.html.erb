@@ -7,3 +7,10 @@
   <p>Rate: <%= room.rate %> </p>
   <p>Hotel: <%= room.hotel_name %> </p>
 <% end %>
+
+<h2> Add a Room by its ID: </h2>
+<%= form_with url: '/guests', method: :post, local: true do |form|  %>
+  <%= form.label :room_id %>
+  <%= form.number_field :room_id %>
+  <%= form.submit %>
+<% end %>
