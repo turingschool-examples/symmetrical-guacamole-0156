@@ -25,14 +25,17 @@ RSpec.describe 'index view' do
     expect(page).to have_content(room_1.rate)
     expect(page).to have_content(room_1.num_guests)
     expect(page).to have_content(harbor.name)
-    
+    expect(page).to have_content(room_1.reservations)
+
     expect(page).to have_content(room_2.suite)
     expect(page).to have_content(room_2.rate)
     expect(page).to have_content(room_2.num_guests)
+    expect(page).to have_content(room_2.reservations)
 
     expect(page).to have_content(room_3.suite)
     expect(page).to have_content(room_3.rate)
     expect(page).to have_content(room_3.num_guests)
     expect(page).to have_content(holliday.name)
+    expect(page).to have_content(room_3.reservations)
   end
 end

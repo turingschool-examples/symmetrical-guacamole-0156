@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/rooms', to: 'rooms#index'
+
   get '/guests/:id', to: 'guests#show'
 
   post '/guest_rooms/:id', to: 'guest_rooms#create'
