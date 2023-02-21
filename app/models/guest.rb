@@ -5,4 +5,8 @@ class Guest < ApplicationRecord
   def self.count_guests
     Guest.count(:id)
   end
+
+  def self.uniq_guests
+    Guest.all.uniq
+  end
 end
