@@ -1,21 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Hotel, type: :model do
-  describe 'relationships' do
-    it {should have_many :rooms}
-  end
+describe 'extension' do
+  # Extension
 
-  it '#name' do
-    budapest = Hotel.create!(name: "Grand Budapest", location: 'Turkey')
-    expect(budapest.name).to eq("Grand Budapest")
-  end
-
-  it '#location' do
-    budapest = Hotel.create!(name: "Grand Budapest", location: 'Turkey')
-    expect(budapest.location).to eq("Turkey")
-  end
-
-  it '#guests' do
+  # As a visitor,
+  # When I visit a hotel's show page,
+  # Then I see a unique list of all guests that have stayed at this hotel.
+  it 'has a list of all unique guests' do
     budapest = Hotel.create!(name: "Grand Budapest", location: 'Turkey')
     room1 = Room.create!(hotel_id: budapest.id, suite: "Presidential", rate: 125)
     charlize = Guest.create!(name:"Charlize Theron", nights: 3)
@@ -25,6 +16,12 @@ RSpec.describe Hotel, type: :model do
     guest_room2 = GuestRoom.create!(room_id: room1.id, guest_id: danny.id)
     guest_room3 = GuestRoom.create!(room_id: room1.id, guest_id: mark.id)
     guest_room4 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
-    expect(budapest.guests.sort).to eq([charlize, danny, mark].sort)
+
+    visit "/hotels/#{budapest.id}"
+    expect(page).to have_content("#{budapest.name} Show Page")
+    expect(page).to have_content("List of Guests")
+    expect(page).to have_content(charlize.name, count: 1)
+    expect(page).to have_content(danny.name)
+    expect(page).to have_content(mark.name)
   end
 end
