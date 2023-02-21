@@ -1,7 +1,14 @@
 <h1><%= @guest.name %>'s page</h1>
 <H3>Rooms stayed in</h3>
 <% @guest.rooms.each do |room| %>
-  <p>Room:  <%= room.suite %> </p>
+  <p>Rooms:  <%= room.suite %> </p>
   <p>Rate:  <%= room.rate %> </p>
   <p>Hotel:  <%= room.hotel.name %> </p>
 <% end %>
+
+<h3>Add Room</h3>
+<%=form_with url: "/guests/#{@guest.id}/rooms", method: :post, local: true do |f|%>
+  <%=f.label "ID: " %>
+  <%=f.number_field :room_id %>
+  <%=f.submit "Add Room" %>
+<%end%>
