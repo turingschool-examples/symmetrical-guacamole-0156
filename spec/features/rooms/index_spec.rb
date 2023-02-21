@@ -26,7 +26,6 @@ RSpec.describe "room index page" do
   end
   
   scenario "I see a list of all rooms" do
-    save_and_open_page
     expect(page).to have_content("Economy")
     expect(page).to have_content("Double")
     expect(page).to have_content("First Class")
@@ -53,7 +52,6 @@ RSpec.describe "room index page" do
     expect(page).to have_content(@hotel1.name)
     expect(page).to have_content(@hotel2.name)
     expect(page).to have_content(@hotel3.name)
-
   end
 
   scenario "I see the number of guests that have stayed in that room" do
@@ -68,37 +66,5 @@ RSpec.describe "room index page" do
     within "#room-#{@room4.id}" do
       expect(page).to have_content("Number of guests stayed: 0")
     end
-  end
-
-
-
-  xscenario "I see a form to add a room to this guest" do
-    fill_in 'search', with: "#{@room4.id}"
-    expect(current_path).to eq("/guests/#{@guest1.id}")
-  end
-
-  xscenario "I fill in the field with an id of an existing room and click submit I am redirected back to show page" do
-    
-    fill_in 'search', with: "#{@room4.id}"
-    click_button 'Submit'
-    save_and_open_page
-
-    expect(current_path).to eq("/guests/#{@guest1.id}")
-  end
-
-  xscenario "I fill in the field with an id of an existing room and click submit and I see the room now listed" do
-    expect(page).to_not have_content("575")
-    expect(page).to_not have_content(@room4.rate)
-    expect(page).to_not have_content("Condor")
-    expect(page).to_not have_content(@hotel3.name)
-
-    fill_in 'search', with: "#{@room4.id}"
-    click_button 'Submit'
-    save_and_open_page
-
-    expect(page).to have_content("575")
-    expect(page).to have_content(@room4.rate)
-    expect(page).to have_content("Condor")
-    expect(page).to have_content(@hotel3.name)
   end
 end

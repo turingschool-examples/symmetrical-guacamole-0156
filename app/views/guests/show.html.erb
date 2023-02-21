@@ -5,6 +5,6 @@
 </ul>
 
 <%= form_tag("/guests/#{@guest.id}", method: :patch, local: true) do %>
-    <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag ('Submit') %>
-  <% end %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ('Submit') %>
+<% end %>

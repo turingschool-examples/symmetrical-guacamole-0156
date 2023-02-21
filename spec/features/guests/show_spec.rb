@@ -72,7 +72,6 @@ RSpec.describe "guest show page" do
     
     fill_in 'search', with: "#{@room4.id}"
     click_button 'Submit'
-    save_and_open_page
 
     expect(current_path).to eq("/guests/#{@guest1.id}")
   end
@@ -85,7 +84,6 @@ RSpec.describe "guest show page" do
 
     fill_in 'search', with: "#{@room4.id}"
     click_button 'Submit'
-    save_and_open_page
 
     expect(page).to have_content("575")
     expect(page).to have_content(@room4.rate)
