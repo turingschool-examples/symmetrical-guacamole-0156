@@ -3,7 +3,7 @@
 <h3>Rooms:</h3>
 <ul id="room_info">
 <% @rooms.each do |room| %>
-    <li><%= room.suite %>, <%= number_to_currency(room.rate) %>, <%= room.hotel.name %></li><br>
+    <li><strong><%= room.suite %></strong>: <%= number_to_currency(room.rate) %>, <%= room.hotel.name %></li><br>
 <% end %>
 </ul>
 
