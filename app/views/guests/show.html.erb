@@ -7,3 +7,12 @@
     <p><%= "Rate: #{room.rate}" %></p>
   </div>
 <% end %>
+
+<div class="room" id="new_room">
+  <h3>Add New Room</h3>
+  <%= form_with url: "/guests/#{@guest.id}/rooms", method: :post, local: true do |form| %>
+    <p><%= form.label :room_id, "Room ID: " %></p>
+    <p><%= form.text_field :room_id %></p>
+    <p><%= form.submit "Submit" %></p>
+  <% end %>
+</div>
