@@ -5,7 +5,7 @@ RSpec.describe "Show", type: :feature do
   let!(:king) { echo.rooms.create!(rate: 125, suite: "King Bed Room") }
   let!(:twin) { echo.rooms.create!(rate: 75, suite: "Twin Bed Room") }
   let!(:pres) { echo.rooms.create!(rate: 200, suite: "Presidential Room") }
-  let!(:jimmy) { echo.rooms.create!(name: "Jimmy", nights: 3) }
+  let!(:jimmy) { Guest.create!(name: "Jimmy", nights: 3) }
 
   before do
     GuestRoom.create!(guest: jimmy, room: king)
@@ -18,15 +18,16 @@ RSpec.describe "Show", type: :feature do
     context "I see" do
       it "I see the guest's name and I see a list of all the rooms they've stayed in
         including the room's suite, nightly rate, and the name of the hotel that it belongs to." do
-
+          # binding.pry
+          save_and_open_page
           expect(page).to have_content("Jimmy's Page")
-          expect(page).to have_content("King Bed Room")
-          expect(page).to have_content("$125.00")
-          expect(page).to have_content("Twin Bed Room")
-          expect(page).to have_content("$75.00")
-          expect(page).to have_content("Echo Mountain Inn")
-          expect(page).to_not have_content("Presidential Room")
-          expect(page).to_not have_content("$200.00")
+          expect(page).to have_content("Suite: King Bed Room")
+          expect(page).to have_content("Rate: $125.00")
+          expect(page).to have_content("Suite: Twin Bed Room")
+          expect(page).to have_content("Rate: $75.00")
+          expect(page).to have_content("Hotel: Echo Mountain Inn")
+          expect(page).to_not have_content("Suite: Presidential Room")
+          expect(page).to_not have_content("Rate: $200.00")
       end
     end
   end
