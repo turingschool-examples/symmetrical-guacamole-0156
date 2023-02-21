@@ -63,6 +63,8 @@ RSpec.describe 'Guest Show' do
         fill_in :room_id, with: room_3.id
         click_button 'submit'
 
+        expect(page).to have_current_path("/guests/#{guest.id}")
+        
         within('.rooms') {
           expect(page).to have_content(room_3.suite)
           expect(page).to have_content(room_3.rate)
