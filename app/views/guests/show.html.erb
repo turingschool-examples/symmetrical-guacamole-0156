@@ -6,9 +6,9 @@
 <h3>Rooms:</h3>
 
 <ul>
-  <%# <% binding.pry %>
   <% @rooms.each do |room| %>
   <li>Room: <%= room.suite %></li> 
   <li>Rate: <%= room.rate %></li> 
+  <p>Hotel Name: <%= room.hotel.name %></p>
   <% end %> 
 </ul>
