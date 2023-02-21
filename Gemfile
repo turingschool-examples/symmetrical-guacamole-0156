@@ -42,7 +42,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'launchy'
-  gem 'simplecov'
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do
