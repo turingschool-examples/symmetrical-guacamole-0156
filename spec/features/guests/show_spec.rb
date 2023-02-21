@@ -36,6 +36,7 @@ RSpec.describe "Guest Show Page" do
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@hotel_1.name)
+        expect(page).to_not have_content(@hotel_2.name)
         expect(page).to_not have_content(@room_4.rate)
       end
 
@@ -43,6 +44,7 @@ RSpec.describe "Guest Show Page" do
         expect(page).to have_content(@room_2.suite)
         expect(page).to have_content(@room_2.rate)
         expect(page).to have_content(@hotel_1.name)
+        expect(page).to_not have_content(@hotel_2.name)
         expect(page).to_not have_content(@room_4.rate)
       end
     end

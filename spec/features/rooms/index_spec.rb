@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Room, type: :model do
-   before(:each) do 
+RSpec.describe "Rooms Index Page" do
+  before(:each) do 
     @guest_1 = Guest.create!(name: "Kimberly Kimbers", nights: 2)
     @guest_2 = Guest.create!(name: "Timothy Timmons", nights: 7)
     @guest_3 = Guest.create!(name: "Nathan Nathaniels", nights: 5)
@@ -24,15 +24,19 @@ RSpec.describe Room, type: :model do
     @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
     @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_4.id)
   end
-  describe 'relationships' do
-    it {should belong_to :hotel}
-    it {should have_many :guest_rooms}
-    it {should have_many :guests}
-  end
 
-  describe '#guest_count' do 
-    it 'is the number of guests that have stayed in the room' do 
-      expect(@room_1.guest_count).to eq(2)
+  describe 'When visiting the rooms index page' do
+    it 'has a list of all the rooms including (suite, rate, name of hotel, number of guests)' do 
+      visit "/rooms"
+
+      within("##{@room_1.id}") do 
+        expect(page).to have_content(@room_1.suite)
+        expect(page).to have_content("Rate: 300")
+        expect(page).to have_content("Number of Guests: 2")
+        expect(page).to have_content(@hotel_1.name)
+        expect(page).to_not have_content("Rate: 400")
+        expect(page).to_not have_content("rate: 500")
+      end
     end
   end
 end
