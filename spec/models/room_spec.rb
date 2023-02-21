@@ -17,12 +17,12 @@ RSpec.describe Room, type: :model do
     @room_4 = @hotel_2.rooms.create!(rate: 75, suite: "Presidential")
 
     @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_1.id, room_id: @room_1.id)
-    @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_1.id, room_id: @room_2.id)
+    @guest_rooms_2 = GuestRoom.create!(guest_id: @guest_1.id, room_id: @room_2.id)
 
-    @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_2.id, room_id: @room_1.id)
+    @guest_rooms_3 = GuestRoom.create!(guest_id: @guest_2.id, room_id: @room_1.id)
 
-    @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
-    @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_4.id)
+    @guest_rooms_4 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
+    @guest_rooms_5 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_4.id)
   end
   describe 'relationships' do
     it {should belong_to :hotel}
@@ -37,6 +37,8 @@ RSpec.describe Room, type: :model do
 
   describe '#guest_count' do 
     it 'is the number of guests that have stayed in the room' do 
+      expect(@room_1.guest_count).to eq(2)
+      guest_rooms_6 = GuestRoom.create!(guest_id: @guest_1.id, room_id: @room_1.id)
       expect(@room_1.guest_count).to eq(2)
     end
   end
