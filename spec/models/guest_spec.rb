@@ -18,5 +18,17 @@ RSpec.describe Guest, type: :model do
 
       expect(Guest.count_guests).to eq(4)
     end
+
+    it "return a list of unique guests" do
+      matt = Guest.create!(name: 'Matt', nights: 5)
+      keith = Guest.create!(name: 'Keith', nights: 2)
+      stephanie = Guest.create!(name: 'Stephanie', nights: 4)
+
+      expect(Guest.uniq_guests).to eq([matt, keith, stephanie])
+
+      sunita = Guest.create!(name: 'Sunita', nights: 4)
+
+      expect(Guest.uniq_guests).to eq([matt, keith, stephanie, sunita])
+    end
   end
 end
