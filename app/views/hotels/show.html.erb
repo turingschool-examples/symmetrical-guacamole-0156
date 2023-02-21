@@ -1,0 +1,6 @@
+<h1><%= @hotel.name %></h1>
+<h3> Guests: </h3>
+<% @unique_guests.each do |guest| %>
+  <%= "#{guest.name}" %>
+<% end %>
+
