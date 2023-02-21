@@ -17,6 +17,10 @@ GuestRoom.destroy_all
 @room_2 = Room.create(rate: 500, suite: "Terrace" )
 @room_3 = Room.create(rate: 1000, suite: "Penthouse" )
 
+@guest_1 = Guest.create(name: "Antonio", nights: 12)
+@guest_2 = Guest.create(name: "Michael", nights: 3)
+@guest_3 = Guest.create(name: "Keira", nights: 5)
+@guest_4 = Guest.create(name: "Elizabeth", nights: 7)
 
 # let!(:antonio) { @back_end.employees.create!(name: "Antonio", level: 3) }
 # let!(:sandra) { @back_end.employees.create!(name: "Sandra", level: 2) }
@@ -24,8 +28,3 @@ GuestRoom.destroy_all
 # let!(:jeremiah) { @front_end.employees.create!(name: "Jeremiah", level: 1) }
 # let!(:felix) { @front_end.employees.create!(name: "Felix", level: 3) }
 # let!(:ronin) { @front_end.employees.create!(name: "Ronin", level: 2) }
-
-@guest_1 = Guest.create(name: "Antonio", nights: 12)
-@guest_2 = Guest.create(name: "Michael", nights: 3)
-@guest_3 = Guest.create(name: "Keira", nights: 5)
-@guest_4 = Guest.create(name: "Elizabeth", nights: 7)
