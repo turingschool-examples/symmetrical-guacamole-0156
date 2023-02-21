@@ -12,6 +12,7 @@ RSpec.describe "index", type: :feature do
     GuestRoom.create!(guest: steve, room: bum)
     GuestRoom.create!(guest: steve, room: shack)
     GuestRoom.create!(guest: stevie, room: high)
+    GuestRoom.create!(guest: stevie, room: shack)
     
     visit "/rooms"
   end
@@ -27,7 +28,15 @@ RSpec.describe "index", type: :feature do
       end
 
       it 'the number of guests that have stayed in the rooms' do
-        
+        within '.bum' do
+          expect(page).to have_content("Number of guests: 1")
+          expect(page).not_to have_content("Number of guests: 2")
+        end
+
+        within '.shack' do
+          expect(page).to have_content("Number of guests: 2")
+          expect(page).not_to have_content("Number of guests: 1")
+        end
       end
   end
 end
