@@ -8,7 +8,8 @@ RSpec.describe Room, type: :model do
   end
 
   describe "class methods" do
-    let!(:king) { Room.create!(rate: 125, suite: "King Bed Room") }
+    let!(:echo) { Hotel.create!(name: "Echo Mountain Inn", location: "Echo Mountain") }
+    let!(:king) { echo.rooms.create!(rate: 125, suite: "King Bed Room") }
     let!(:jimmy) { Guest.create!(name: "Jimmy", nights: 3) }
     let!(:naomi) { Guest.create!(name: "Naomi", nights: 2) }
     
@@ -19,7 +20,13 @@ RSpec.describe Room, type: :model do
 
     describe "#guest_count" do
       it "returns the total amount of guest that have stayed in that room" do
+
         expect(king.guest_count).to eq(2)
+
+        alex = Guest.create!(name: "Alex", nights: 4)
+        GuestRoom.create!(guest: alex, room: king)
+
+        expect(king.guest_count).to eq(3)
       end
     end
   end
