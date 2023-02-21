@@ -31,6 +31,11 @@ RSpec.describe "/guests/show", type: :feature do
         expect(page).to_not have_content("High Roller")
         expect(page).to_not have_content("Nightly Rate: $200.00")
       end
+
+      it 'has a form to add a room to this guest' do
+        expect(page).to have_field("ID")
+        expect(page).to have_button("Submit")
+      end
     end
   end
 end
