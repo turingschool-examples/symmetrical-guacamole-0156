@@ -3,6 +3,8 @@
 <%# <%= @hotels.each do |hotel| %>
   <%# <%= hotel.name %>
     <% @rooms.each do |room| %>
+      Hotel: <%= room.hotel.name %>
+      <br>
       Suite: <%= room.suite %>
       <br>
       Rate: <%= room.rate %>
