@@ -12,7 +12,7 @@
 <div id="add_rooms">
 	<%= form_with url: "/guests/#{@guest.id}", method: :patch, local: true do |form| %>
     <p><%= form.label :add, "Add a room id to guest" %> </p>
-		<p><%= form.text_field :id, required: true %></p>
+		<p><%= form.text_field :room_id, required: true %></p>
     <p><%= form.submit "Submit" %></p>
 	<% end %>
 </div>

@@ -43,7 +43,22 @@ RSpec.describe 'When a user visit a guests show page', type: :feature do
 	end
 
 	scenario 'see a form to add a room to this guest' do
-		visit "/guests/#{@guest1.id}"
+		visit "/guests/#{@guest1.id}"		
 		expect(page).to have_selector('div#add_rooms')
+		expect(page).to have_field('room_id')
+		expect(page).to have_button('Submit')	
+	end
+
+	scenario 'I fill in a field with the id of an existing room
+	And I click submit, I am redirected to the guest show page and I see the room now listed under this guests rooms' do
+		visit "/guests/#{@guest1.id}"
+		fill_in 'room_id', with: "#{@suite.id}"
+		click_button 'Submit'
+
+		expect(current_path).to eq("/guests/#{@guest1.id}")
+
+		within 'div#rooms_stayed' do
+			expect(page).to have_content("Suite ($250 at the Sleepy Inn)")
+		end
 	end
 end
