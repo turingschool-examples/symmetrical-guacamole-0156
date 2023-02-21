@@ -1,1 +1,5 @@
-<%binding.pry%>
+<h1>List of all Rooms</h1>
+
+<%@rooms.each do |room|%>
+  <p><%="#{room.suite} is located within the hotel #{room.hotel.name}. It has a nightly rate of #{room.rate} per night and to date, has housed #{room.count_guests} guests."%> </p>
+<%end%>

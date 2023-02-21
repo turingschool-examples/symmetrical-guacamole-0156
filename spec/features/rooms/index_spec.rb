@@ -8,7 +8,7 @@ before(:each) do
   @room_san_jose = @hotel_1.rooms.create!(rate: 80, suite: "Presidential")
   @room_oaxaca = @hotel_1.rooms.create!(rate: 100, suite: "Twin")
   @room_jocotopec = @hotel_1.rooms.create!(rate: 50, suite: "Pauper")
-  @room_da_flow = @hotel_2.rooms.creaet!(rate:300, suite: "Beachside")
+  @room_da_flow = @hotel_2.rooms.create!(rate:300, suite: "Beachside")
 
   @guest_hady = Guest.create!(name: "Hady", nights: 12)
   @guest_malena = Guest.create!(name: "Malena", nights: 6)
