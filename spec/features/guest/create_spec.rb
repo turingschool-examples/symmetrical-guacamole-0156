@@ -18,13 +18,14 @@ RSpec.describe 'Add Room to Guest#Show' do
   end
 
   describe "new room" do
-    xit "renders a new form" do
+    it "renders a new form" do
+      save_and_open_page
       expect(page).to have_content('Add Room')
-      expect(find('form')).to have_content('Hotel ID')
+      expect(find('form')).to have_content('Room id')
     end
 
     xit "creates a new guest" do
-      fill_in 'Hotel ID', with: @room_3.id
+      fill_in 'Room', with: @room_3.id
       click_button 'Submit'
       expect(page).to have_current_path("/guests/#{@guest_1.id}")
       expect(page).to have_content("Suite Name: #{@room_3.suite}")

@@ -8,3 +8,12 @@
   <br>
   </div>
 <% end %>
+
+<h3>Add Rooms</h3>
+
+<%= form_with url: "/guests/#{@guest.id}", method: :post, local: true do |f| %>
+  <%= f.label "Room id" %>
+  <%= f.text_field :room %>
+
+  <%= f.submit %>
+<% end %>
