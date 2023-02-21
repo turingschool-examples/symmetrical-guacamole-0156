@@ -29,13 +29,13 @@ RSpec.describe 'rooms index page' do
       expect(page).to have_content("Suite Name: Standard")
       expect(page).to have_content("Suite Name: Balcony Standard")
 
-      expect(page).to have_content("Nightly Rate: 125")
-      expect(page).to have_content("Nightly Rate: 225")
-      expect(page).to have_content("Nightly Rate: 195")
+      expect(page).to have_content("Nightly Rate: $125")
+      expect(page).to have_content("Nightly Rate: $225")
+      expect(page).to have_content("Nightly Rate: $195")
 
-      expect(page).to have_content('Echo Mountain Inn')
-      expect(page).to have_content("Snowed Inn")
-      expect(page).to have_content("Loveland Hotel")
+      expect(page).to have_content('Hotel: Echo Mountain Inn')
+      expect(page).to have_content("Hotel: Snowed Inn")
+      expect(page).to have_content("Hotel: Loveland Hotel")
 
       expect(page).to have_content("Number of guests who have stayed: 1")
       expect(page).to have_content("Number of guests who have stayed: 2")

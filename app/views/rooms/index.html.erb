@@ -1,5 +1,6 @@
 <%@rooms.each do |room|%>
 <h2>Suite Name: <%=room.suite%></h2>
 <p>Nightly Rate: $<%=room.rate%></p>
-
+<p>Hotel: <%=room.hotel.name%></p>
+<p>Number of guests who have stayed: <%=room.guests.count%></p>
 <%end%>
