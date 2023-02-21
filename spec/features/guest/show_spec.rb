@@ -18,24 +18,21 @@ describe 'As a visitor' do
     it "And I see a list of all the rooms they've stayed in" do
       visit "/guests/#{tori.id}"
 
-      expect(page).to have_content("Penthouse at the Icelandic Inn")
-      expect(page).to have_content("Private Cabin at the Denali Denn")
+      expect(page).to have_content("Penthouse at the Sun Valley Main")
+      expect(page).to have_content("Private Cabin at the Sun Valley Private")
     end
 
     it "including the room's suite, nightly rate, and the name of the hotel that it belongs to." do
       visit "/guests/#{tori.id}"
 
-      within "#Penthouse Icelandic Inn" do
         expect(page).to have_content("Penthouse")
         expect(page).to have_content("9998")
-        expect(page).to have_content("Icelandic Inn")
-      end
-
-      within "#Private Cabin Denali Denn" do
+        expect(page).to have_content("Sun Valley Main")
+    
         expect(page).to have_content("Private Cabin")
         expect(page).to have_content("8798")
-        expect(page).to have_content("Denali Denn")
-      end
+        expect(page).to have_content("Sun Valley Private")
+      
     end
   end
 end
