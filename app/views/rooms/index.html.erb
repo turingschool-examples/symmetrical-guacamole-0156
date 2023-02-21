@@ -1,0 +1,6 @@
+<h1>Room Index:</h1>
+
+<% @rooms.each do |room| %>
+<%= room.suite %> - <%= room.hotel.name %>
+Nightly Rate: <%= number_to_currency(room.rate) %>
+<% end %>
