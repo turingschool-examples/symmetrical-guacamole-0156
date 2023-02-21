@@ -5,6 +5,4 @@ class Guest < ApplicationRecord
   def self.count_guests
     Guest.count(:id)
   end
-
-
 end
