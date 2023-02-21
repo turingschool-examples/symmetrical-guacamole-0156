@@ -43,6 +43,11 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
+  gem 'orderly'
+  gem 'pry-rails' #added [https://rubygems.org/gems/pry-rails/versions/0.3.9]
+  gem 'net-http' #added [https://github.com/ruby/net-http]
+  # gem 'faker' #added [https://github.com/faker-ruby/faker]
+  # gem 'factorybot' #added [https://github.com/thoughtbot/factory_bot_rails]
 end
 
 group :development do
