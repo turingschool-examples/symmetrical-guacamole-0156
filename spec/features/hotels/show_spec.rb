@@ -22,7 +22,8 @@ RSpec.describe "Show", type: :feature do
   describe "when I visit /hotels/:id" do
     context "I see" do
       it "a unique list of all guests that have stayed at this hotel." do
-        binding.pry
+        # binding.pry
+        save_and_open_page
         expect(page).to have_content("Jimmy")
         expect(page).to have_content("Naomi")
         expect(page).to have_content("Alex")

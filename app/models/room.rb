@@ -8,7 +8,6 @@ class Room < ApplicationRecord
    end
 
    def guest_names
-      # binding.pry
       self.guests.pluck(:name)
    end
 end
