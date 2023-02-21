@@ -24,5 +24,18 @@ RSpec.describe Guest, type: :model do
 
       expect(Guest.total_count).to eq(4)
     end
+
+    it "::uniq_guest_names" do
+      expect(Guest.uniq_guest_names).to eq(["Nika", "Letti", "Calum"])
+
+      Guest.create!(name: "Nika")
+
+      expect(Guest.uniq_guest_names).to eq(["Nika", "Letti", "Calum"])
+
+      Guest.create!(name: "Melony")
+
+      expect(Guest.uniq_guest_names).to eq(["Nika", "Letti", "Calum", "Melony"])
+
+    end
   end
 end

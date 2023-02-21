@@ -8,4 +8,8 @@ class Guest < ApplicationRecord
     distinct.count(:id)
   end
 
+  def self.uniq_guest_names
+    distinct.pluck(:name)
+  end
+
 end
