@@ -6,3 +6,8 @@
   <p>Rate: <%=room.rate%></p>
   <p>Hotel: <%=room.hotel.name%></p>
 <%end%>
+
+<h5>Add Room:</h5>
+<%= form_tag("/guests/#{@guest.id}/guest_rooms", local: true)%>
+<%= text_field_tag(:room_id, params[:room_id])%>
+<%= submit_tag('Submit')%>
