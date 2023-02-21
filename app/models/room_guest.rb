@@ -1,0 +1,2 @@
+class RoomGuest < ApplicationRecord
+end
