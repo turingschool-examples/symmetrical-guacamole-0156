@@ -32,6 +32,7 @@ end
 
     it 'lists the number of guests that have stayed in each room' do 
       visit "/rooms"
+      save_and_open_page
 
       expect(page).to have_content "Number of Guests Stayed: 2"
       expect(page).to have_content "Number of Guests Stayed: 1"
