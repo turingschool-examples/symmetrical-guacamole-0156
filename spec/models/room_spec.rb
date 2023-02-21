@@ -30,6 +30,11 @@ RSpec.describe Room, type: :model do
         expect(@room1.guest_count).to eq(3)
         expect(@room1.guest_count).to_not eq(nil)
       end
+
+      it '#unique_guest_name' do
+        expect(@room1.unique_guest_name).to eq([@mike,@matt])
+        expect(@room2.unique_guest_name).to eq([@mike,@matt])
+      end
     end
   end
 end

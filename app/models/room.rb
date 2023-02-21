@@ -10,4 +10,8 @@ class Room < ApplicationRecord
    def guest_count
       guests.count
    end
+
+   def unique_guest_name
+      guests.distinct
+   end
 end
