@@ -20,8 +20,10 @@ RSpec.describe 'Guest Show Page', type: :feature do
         expect(page).to have_content("Guest Name: #{john.name}")
         expect(page).to have_content("Rooms:")
         save_and_open_page
-        expect(page).to have_content("#{room_1.suite}, $#{room_1.rate}.00, #{hotel_1.name}")
-        expect(page).to have_content("#{room_2.suite}, $#{room_2.rate}.00, #{hotel_1.name}")
+        within 'ul#room_info' do
+          expect(page).to have_content("#{room_1.suite}, $#{room_1.rate}.00, #{hotel_1.name}")
+          expect(page).to have_content("#{room_2.suite}, $#{room_2.rate}.00, #{hotel_1.name}")
+        end
       end
     end
   end
