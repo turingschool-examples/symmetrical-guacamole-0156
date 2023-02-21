@@ -16,18 +16,31 @@ RSpec.describe "Show", type: :feature do
 
   describe "when I visit /guests/:id" do
     context "I see" do
-      it "I see the guest's name and I see a list of all the rooms they've stayed in
-        including the room's suite, nightly rate, and the name of the hotel that it belongs to." do
-          # binding.pry
-          save_and_open_page
-          expect(page).to have_content("Jimmy's Page")
-          expect(page).to have_content("Suite: King Bed Room")
-          expect(page).to have_content("Rate: $125.00")
-          expect(page).to have_content("Suite: Twin Bed Room")
-          expect(page).to have_content("Rate: $75.00")
-          expect(page).to have_content("Hotel: Echo Mountain Inn")
-          expect(page).to_not have_content("Suite: Presidential Room")
-          expect(page).to_not have_content("Rate: $200.00")
+      it "the guest's name and I see a list of all the rooms they've stayed in including 
+        the room's suite, nightly rate, and the name of the hotel that it belongs to." do
+
+        expect(page).to have_content("Jimmy's Page")
+        expect(page).to have_content("Suite: King Bed Room")
+        expect(page).to have_content("Rate: $125.00")
+        expect(page).to have_content("Suite: Twin Bed Room")
+        expect(page).to have_content("Rate: $75.00")
+        expect(page).to have_content("Hotel: Echo Mountain Inn")
+        expect(page).to_not have_content("Suite: Presidential Room")
+        expect(page).to_not have_content("Rate: $200.00")
+      end
+
+      it "a form to add a room to this guest." do
+        # binding.pry
+        # save_and_open_page
+        expect(page).to have_field(:suite)
+        expect(page).to have_button("Submit")
+      end
+      
+      xit "I fill in a field with the id of an existing room and I click submit then I am
+        redirected back to the guest's show page and I see the room now listed under this guest's rooms" do
+
+        expect(current_path).to eq("/guests/#{jimmy.id}")
+        expect(page).to have_content("Suite: Presidential Room")
       end
     end
   end
