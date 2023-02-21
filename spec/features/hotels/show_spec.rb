@@ -26,7 +26,7 @@ RSpec.describe 'Hotels Index Page', type: :feature do
     describe 'when I visit the rooms index page' do
       it 'displays all of the unique guests that have stayed at this hotel' do
         expect(page).to have_content("The Brown Palace")
-        save_and_open_page
+        
         expect(page).to have_content("All Guest Names: #{john.name}, #{jane.name}")
         expect(page).to have_content("All Guest Names: #{john.name}, #{jane.name}, #{james.name}")
       end
