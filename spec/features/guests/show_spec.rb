@@ -58,7 +58,7 @@ RSpec.describe "Guest Show Page" do
         fill_in("Room ID", with: @room_5.id)
         click_button("Submit")
 
-        expect(current_path).to eq(visit "/guests/#{@guest_1.id}")
+        expect(current_path).to eq("/guests/#{@guest_1.id}")
       end
 
       within(".guest_rooms") do 
