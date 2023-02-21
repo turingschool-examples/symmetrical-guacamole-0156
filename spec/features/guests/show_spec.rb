@@ -23,7 +23,6 @@ RSpec.describe "Guest Show Page" do
       it "can see the guest's name" do
         expect(page).to have_content("Guest Name: Adam")
         expect(page).to_not have_content("Guest Name: Brie")
-        save_and_open_page
       end
       
       it "can see a list of all rooms the guest has stayed in, including their suite, rate and hotel name" do
@@ -34,6 +33,24 @@ RSpec.describe "Guest Show Page" do
 
           expect(page).to_not have_content("Suite: Standard Room")
           expect(page).to_not have_content("Rate: 125")
+        }
+      end
+
+      it "can see a form to add new room, fill in the form with an existing id and submit to be redirected back to show page and see the new room" do
+        within("#new_room") {
+          expect(page).to have_field(:room_id)
+          expect(page).to have_button("Submit")
+          
+          fill_in :room_id, with: @penthouse.id
+          click_button "Submit"
+        }
+
+        expect(current_path).to eq("/guests/#{@adam.id}")
+
+        within("#room-#{@penthouse.id}") {
+          expect(page).to have_content("Hotel: The Hythe")
+          expect(page).to have_content("Suite: Penthouse")
+          expect(page).to have_content("Rate: 1000")
         }
       end
     end
