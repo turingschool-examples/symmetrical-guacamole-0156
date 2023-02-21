@@ -4,7 +4,7 @@
   <% @rooms.each do |room| %>
     <div id = "room_info-<%= room.id %>">
       <li> <%= room.suite %> - rate: $<%= room.rate %>/night, hotel: <%= room.hotel.name %></li>
-      <p>Total Count of Guests: <%= COUNT HERE %></p>
+      <p>Total Count of Guests: <%= room.guests.total_count %></p>
       <br>
     </div>
   <% end %>

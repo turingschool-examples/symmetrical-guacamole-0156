@@ -3,7 +3,7 @@ class Guest < ApplicationRecord
   has_many :rooms, through: :guest_rooms
 
   def self.total_count
-    count(:id)
+    distinct.count(:id)
   end
 
 end
