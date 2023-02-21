@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 2023_02_21_154843) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "hotel_rooms", force: :cascade do |t|
-    t.bigint "room_id"
-    t.bigint "guest_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["guest_id"], name: "index_hotel_rooms_on_guest_id"
-    t.index ["room_id"], name: "index_hotel_rooms_on_room_id"
-  end
-
   create_table "hotels", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -56,8 +47,6 @@ ActiveRecord::Schema.define(version: 2023_02_21_154843) do
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
-  add_foreign_key "hotel_rooms", "guests"
-  add_foreign_key "hotel_rooms", "rooms"
   add_foreign_key "room_guests", "guests"
   add_foreign_key "room_guests", "rooms"
   add_foreign_key "rooms", "hotels"
