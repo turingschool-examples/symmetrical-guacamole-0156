@@ -21,8 +21,8 @@ RSpec.describe 'Guest Show Page', type: :feature do
         expect(page).to have_content("Rooms:")
 
         within 'ul#room_info' do
-          expect(page).to have_content("#{room_1.suite}, $#{room_1.rate}.00, #{hotel_1.name}")
-          expect(page).to have_content("#{room_2.suite}, $#{room_2.rate}.00, #{hotel_1.name}")
+          expect(page).to have_content("#{room_1.suite}: $#{room_1.rate}.00, #{hotel_1.name}")
+          expect(page).to have_content("#{room_2.suite}: $#{room_2.rate}.00, #{hotel_1.name}")
         end
       end
 
@@ -38,16 +38,17 @@ RSpec.describe 'Guest Show Page', type: :feature do
         room_3 = hotel_1.rooms.create!(rate: 55, suite: 'Suite 3')
 
         within 'ul#room_info' do
-          expect(page).to_not have_content("#{room_3.suite}, $#{room_3.rate}.00, #{hotel_1.name}")
+          expect(page).to_not have_content("#{room_3.suite}: $#{room_3.rate}.00, #{hotel_1.name}")
         end
 
         fill_in :room_id, with: room_3.id
         click_button :Submit
 
         expect(current_path).to eq("/guests/#{john.id}")
+        expect(page).to have_content("Room created!")
 
         within 'ul#room_info' do
-          expect(page).to have_content("#{room_3.suite}, $#{room_3.rate}.00, #{hotel_1.name}")
+          expect(page).to have_content("#{room_3.suite}: $#{room_3.rate}.00, #{hotel_1.name}")
         end
       end
     end
