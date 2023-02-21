@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 	post '/room_guests/:guest_id', to: 'room_guests#create'
 
 	get '/rooms', to: 'rooms#index'
+
+	get '/hotels/:id', to: 'hotels#show'
 end

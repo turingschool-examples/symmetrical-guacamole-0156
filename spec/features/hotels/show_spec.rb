@@ -1,11 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Hotel, type: :model do
-  describe 'relationships' do
-    it {should have_many :rooms}
-    it {should have_many(:guests).through(:rooms)}
-  end
-
+RSpec.describe 'hotels show page', type: :feature do
 	let!(:hotel_1) { Hotel.create(name: 'Marriott', location: 'Vail Resort')}
 	let!(:hotel_2) { Hotel.create(name: 'Days Inn', location: 'Portland Airport')}
 	let!(:hotel_3) { Hotel.create(name: 'Holiday Inn', location: 'Los Angeles')}
@@ -28,12 +23,28 @@ RSpec.describe Hotel, type: :model do
 		RoomGuest.create!(guest: guest_2, room: room_3)
 		RoomGuest.create!(guest: guest_2, room: room_1)
 		RoomGuest.create!(guest: guest_3, room: room_2)
+		visit "/hotels/#{hotel_1.id}"
 	end
 
-	describe '#unique guests' do
-		it 'returns a list of unique list of guests' do
-			expect(hotel_1.unique_guests).to eq([guest_1, guest_2])
-			expect(hotel_1.unique_guests).to_not include(guest_3)
+	describe 'list of guests' do
+		it 'it shows a unique list of all guests that have stayed at this hotel' do
+			expect(page).to have_content("List of Guests Who Have Stayed")
+			save_and_open_page
+			within '#guests' do
+				expect(page).to have_content(guest_1.name)
+				expect(page).to have_content(guest_2.name)
+				expect(page).to_not have_content(guest_3.name)
+			end
+
+			RoomGuest.create!(guest: guest_3, room: room_5)
+
+			visit "/hotels/#{hotel_1.id}"
+			
+			within '#guests' do
+				expect(page).to have_content(guest_1.name)
+				expect(page).to have_content(guest_2.name)
+				expect(page).to have_content(guest_3.name)
+			end
 		end
 	end
 end
