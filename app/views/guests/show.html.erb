@@ -5,3 +5,10 @@
     <p><%=("#{@guest.name} stayed in the #{room.suite} at #{room.hotel.name} for #{room.rate} per night.")%></p>
   <%end%>
 </div>
+
+<div id="add_room_to_guest">
+  <%= form_with url: "/guest_rooms/#{@guest.id}", method: :post, local: true do |form| %>
+    <%= form.number_field "room_id" %>
+    <%= form.submit "Add Room to Guest" %>
+  <%end %>
+</div>

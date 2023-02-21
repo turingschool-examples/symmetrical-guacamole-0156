@@ -21,7 +21,7 @@ end
 
   describe "as a visitor" do
     describe "when visit a guest show page" do 
-      it "displays the guest's name and all the rooms they have stayed in" do 
+      it "displays the guest's name and all the rooms they have stayed in, and the information of that room" do 
 
         visit "/guests/#{@guest_hady.id}"
 
@@ -33,8 +33,47 @@ end
           expect(page).to have_content("#{@guest_hady.name} stayed in the #{@room_jocotopec.suite} at #{@room_jocotopec.hotel.name} for #{@room_jocotopec.rate} per night.")
 
         end
+      end
+
+      it "there is a form to add a room to the guest" do 
+
+        visit "/guests/#{@guest_hady.id}"
+
+        expect(page).to have_selector('form')
+        expect(page).to have_field("room_id")
+        expect(page).to have_button("Add Room to Guest")
 
       end
+
+      it "you fill in the field with the id of an existing room, click submit and are redirected back to the guest show page where you see the newly added room now listed under the guest room" do 
+
+        visit "/guests/#{@guest_hady.id}"
+
+        within("div#rooms_stayed_in") do
+          expect(page).to_not have_content(@room_san_jose.suite)
+        end 
+
+        fill_in "room_id", with: "#{@room_san_jose.id}"
+        click_button("Add Room to Guest")
+
+        expect(current_path).to eq("/guests/#{@guest_hady.id}")
+
+        within("div#rooms_stayed_in") do
+          expect(page).to have_content(@room_san_jose.suite)
+        end 
+
+
+      end
+
+
+
+
+
+
+
+
+
+
     end
   end
 end 
