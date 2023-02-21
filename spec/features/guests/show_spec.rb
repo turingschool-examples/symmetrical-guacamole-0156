@@ -23,11 +23,11 @@ RSpec.describe '#show' do
 
       it 'a list of all the rooms the guest has stayed in and their details' do 
         visit "/guests/#{@guest_1.id}"
-  
+        save_and_open_page
         expect(page).to have_content "Rooms Stayed In\nCabin"
-        expect(page).to have_content "Rate: 125\nHotel: Red Cliffs Lodge"
+        expect(page).to have_content "Rate: 125 Hotel: Red Cliffs Lodge"
         expect(page).to have_content "River Side"
-        expect(page).to have_content "Rate: 250\nHotel: Red Cliffs Lodge"
+        expect(page).to have_content "Rate: 250 Hotel: Red Cliffs Lodge"
 
       end
     end
