@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2023_02_21_162428) do
   create_table "guest_rooms", force: :cascade do |t|
     t.bigint "guest_id"
     t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["guest_id"], name: "index_guest_rooms_on_guest_id"
     t.index ["room_id"], name: "index_guest_rooms_on_room_id"
   end

@@ -1,0 +1,3 @@
+class GuestRoomsController < ApplicationController
+  
+end
