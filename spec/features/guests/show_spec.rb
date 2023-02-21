@@ -45,7 +45,6 @@ RSpec.describe 'guests show page' do
         
         fill_in :room_id, with: "#{room3.id}"
         click_on "Submit"
-        save_and_open_page
 
         expect(current_path).to eq("/guests/#{guest1.id}")
         expect(page).to have_content("Suite: Balcony Standard")
