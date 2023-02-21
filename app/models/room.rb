@@ -5,5 +5,9 @@ class Room < ApplicationRecord
 
    def hotel_name
       Hotel.find(hotel_id).name
-    end
+  end
+
+  def guest_count
+    guests.count
+  end
 end
