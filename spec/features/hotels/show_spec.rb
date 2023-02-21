@@ -26,7 +26,7 @@ RSpec.describe 'the hotel show page' do
         guestroom8 = GuestRoom.create!(guest: jomah, room: haunted)
         
         visit "/hotels/#{stanley.id}"
-     
+    
         expect(page).to have_content("Matt Stephanie Keith Jomah")
       end
     end
