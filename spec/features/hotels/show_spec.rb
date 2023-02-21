@@ -16,9 +16,11 @@ RSpec.describe 'Hotel Show' do
 
         visit "/hotels/#{hotel.id}"
 
+        within('.guests') {
         expect(page).to have_content(guest_1.name)
         expect(page).to have_content(guest_2.name)
-
+        }
+        
       end 
     end 
   end 
