@@ -1,9 +1,19 @@
 <h1> <%= @guest.name %> </h1>
 
-<% @guest.rooms.each do |room| %>
-  <div id = <%="#{room.id}"%>>
-    <h3>Suite: <%= room.suite %></h3>
-    <p>Nightly Rate: <%= room.rate %>$</p><br>
-    <p>Hotel: <%= room.hotel.name %></p><br>
-  </div>
-<% end %>
+<div class = "guest_rooms">
+  <% @guest.rooms.each do |room| %>
+    <div id = <%="#{room.id}"%>>
+      <h3>Suite: <%= room.suite %></h3>
+      <p>Nightly Rate: <%= room.rate %>$</p><br>
+      <p>Hotel: <%= room.hotel.name %></p><br>
+    </div>
+  <% end %>
+</div>
+
+<div class = "add_room_form">
+  <%= form_with url: "/guest_rooms/#{@guest.id}", method: :post, local: true do |form| %>
+    <%= form.label :room_id, "Room ID" %>
+    <%= form.number_field :room_id%>
+    <%= form.button "Submit" %>
+  <% end %>
+</div>
