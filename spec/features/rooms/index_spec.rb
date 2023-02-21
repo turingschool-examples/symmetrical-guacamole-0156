@@ -1,11 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Room, type: :model do
-  describe 'relationships' do
-    it {should belong_to :hotel}
-    it {should have_many :guest_rooms}
-    it {should have_many(:guests).through(:guest_rooms)}
-  end
+RSpec.describe 'Rooms Index Page', type: :feature do
 
   let(:hotel_1) { Hotel.create!(name: 'The Stanley', location: 'Estes Park, CO') }
   let(:hotel_2) { Hotel.create!(name: 'The Brown Palace', location: 'Denver, CO') }
@@ -21,20 +16,22 @@ RSpec.describe Room, type: :model do
     GuestRoom.create!(guest: jane, room: room_1)
     GuestRoom.create!(guest: john, room: room_2)
     GuestRoom.create!(guest: jane, room: room_3)
+
+    visit '/rooms'
   end
 
-  describe '.instance_methods' do
+  describe 'As a visitor' do
+    describe 'when I visit the rooms index page' do
+      it 'I see the rooms and their attributes listed' do
+        expect(page).to have_content("All Rooms:")
 
-    it '#guest_count, can give a count of unique guests who have stayed in each room' do
-      expect(room_1.guest_count).to eq(2)
-      expect(room_2.guest_count).to eq(1)
-      expect(room_3.guest_count).to eq(1)
-
-      james = Guest.create!(name: 'James Smith', nights: 2)
-      GuestRoom.create!(guest: james, room: room_2)
-
-      expect(room_2.guest_count).to eq(2)
-      expect(room_2.guest_count).to_not eq(1)
+        within 'ul#room_info' do
+          save_and_open_page
+          expect(page).to have_content("#{room_1.suite}: $#{room_1.rate}.00, #{hotel_1.name}, Number of Guests: 2")
+          expect(page).to have_content("#{room_2.suite}: $#{room_2.rate}.00, #{hotel_2.name}, Number of Guests: 1")
+          expect(page).to have_content("#{room_3.suite}: $#{room_3.rate}.00, #{hotel_2.name}, Number of Guests: 1")
+        end
+      end
     end
   end
 end
