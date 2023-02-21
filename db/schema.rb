@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 2023_02_21_161543) do
   enable_extension "plpgsql"
 
   create_table "guest_rooms", force: :cascade do |t|
-    t.bigint "rooms_id"
-    t.bigint "guests_id"
+    t.bigint "room_id"
+    t.bigint "guest_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["guests_id"], name: "index_guest_rooms_on_guests_id"
-    t.index ["rooms_id"], name: "index_guest_rooms_on_rooms_id"
+    t.index ["guest_id"], name: "index_guest_rooms_on_guest_id"
+    t.index ["room_id"], name: "index_guest_rooms_on_room_id"
   end
 
   create_table "guests", force: :cascade do |t|
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2023_02_21_161543) do
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
-  add_foreign_key "guest_rooms", "guests", column: "guests_id"
-  add_foreign_key "guest_rooms", "rooms", column: "rooms_id"
+  add_foreign_key "guest_rooms", "guests"
+  add_foreign_key "guest_rooms", "rooms"
   add_foreign_key "rooms", "hotels"
 end
