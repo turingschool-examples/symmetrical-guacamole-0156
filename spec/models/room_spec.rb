@@ -29,5 +29,17 @@ RSpec.describe Room, type: :model do
         expect(king.guest_count).to eq(3)
       end
     end
+
+    describe "#guest_names" do
+      it "returns the total amount of guest that have stayed in that room" do
+
+        expect(echo.guest_names).to eq(["Jimmy, Naomi"])
+
+        alex = Guest.create!(name: "Alex", nights: 4)
+        GuestRoom.create!(guest: alex, room: king)
+
+        expect(echo.guest_names).to eq(["Jimmy, Naomi, Alex"])
+      end
+    end
   end
 end 
