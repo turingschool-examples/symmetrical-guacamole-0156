@@ -6,4 +6,8 @@ class Room < ApplicationRecord
    def hotel_name
       hotel.name
    end
+
+   def guest_count
+      guests.count
+   end
 end
