@@ -26,7 +26,7 @@ RSpec.describe 'the guest show page' do
         grand_budapest = Hotel.create!(name: "The Grand Budapest Hotel", location: "Budapest")
         pres = Room.create!(suite: 'Presidential', rate: 400, hotel: stanley)
         king = Room.create!(suite: 'King', rate: 500, hotel: stanley)
-        poor = Room.create!(suite: 'Poor', rate: 50, hotel: grand_budapest)
+        poor = Room.create!(suite: 'Poor', rate: 20, hotel: grand_budapest)
         matt = Guest.create!(name: 'Matt', nights: 3)
         guestroom1 = GuestRoom.create!(guest: matt, room: pres )
         guestroom2 = GuestRoom.create!(guest: matt, room: king )
@@ -35,6 +35,7 @@ RSpec.describe 'the guest show page' do
 
         expect(page).to_not have_content("The Grand Budapest Hotel")
         expect(page).to_not have_content("Poor")
+        expect(page).to_not have_content("20")
   
         fill_in("Room ID", with: poor.id)
         click_button("Submit")
@@ -42,7 +43,7 @@ RSpec.describe 'the guest show page' do
         expect(current_path).to eq("/guests/#{matt.id}")
         expect(page).to have_content("The Grand Budapest Hotel")
         expect(page).to have_content("Poor")
-        expect(page).to have_content("50")
+        expect(page).to have_content("20")
       end
     end
   end
