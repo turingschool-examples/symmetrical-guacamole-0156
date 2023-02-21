@@ -4,6 +4,6 @@ class Room < ApplicationRecord
   has_many :guests, through: :guest_rooms 
   
   def number_of_guests
-    self.guests.count
+    self.guests.distinct.count
   end
 end

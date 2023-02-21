@@ -22,14 +22,16 @@ RSpec.describe Room, type: :model do
   
       GuestRoom.create!(guest: @jasmine, room: @penthouse)
       GuestRoom.create!(guest: @jasmine, room: @king)
+      GuestRoom.create!(guest: @jasmine, room: @king)
       GuestRoom.create!(guest: @ivan, room: @king)
+      GuestRoom.create!(guest: @ivan, room: @double)
       GuestRoom.create!(guest: @ivan, room: @double)
       GuestRoom.create!(guest: @hailey, room: @king)
       GuestRoom.create!(guest: @hailey, room: @double)
     end
 
     describe '#number_of_guests' do
-      it 'returns the number of guests for a room' do
+      it 'returns the number of unique guests for a room' do
         expect(@penthouse.number_of_guests).to eq(1)
         expect(@king.number_of_guests).to eq(3)
         expect(@double.number_of_guests).to eq(2)
