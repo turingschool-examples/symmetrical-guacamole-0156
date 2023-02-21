@@ -5,3 +5,12 @@
   <p>Nightly Rate: $<%=room.rate%><p>
   <p>Hotel: <%=room.hotel_name%><p>
 <%end%>
+<br>
+<div id="add_stay">
+  <h2>Add a Stay:</h2>
+  <%= form_tag("/guests/#{@guest.id}", method: :get, local: true) do%>
+  <p>Enter Room ID:</p>
+  <%= text_field_tag(:add_room, params[:add_room])%>
+  <%= submit_tag ("Submit")%>
+  <%end%>
+</div>
