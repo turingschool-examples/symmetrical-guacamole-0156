@@ -30,6 +30,11 @@ RSpec.describe Hotel, type: :model do
     it {should have_many :guests}
   end
 
+  describe 'validations' do 
+    it {should validate_presence_of :name}
+    it {should validate_presence_of :location}
+  end
+
   describe "#guests_stayed" do 
     it 'is a list of guests that stayed at the hotel' do 
       expect(@hotel_1.guests_stayed).to eq([@guest_1, @guest_2])

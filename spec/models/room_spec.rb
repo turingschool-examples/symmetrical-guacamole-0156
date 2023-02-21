@@ -30,6 +30,11 @@ RSpec.describe Room, type: :model do
     it {should have_many :guests}
   end
 
+  describe 'validations' do 
+    it {should validate_presence_of :suite}
+    it {should validate_numericality_of :rate}
+  end
+
   describe '#guest_count' do 
     it 'is the number of guests that have stayed in the room' do 
       expect(@room_1.guest_count).to eq(2)
