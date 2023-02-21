@@ -14,9 +14,6 @@ before(:each) do
 
   GuestRoom.create!(guest_id: @guest_hady.id, room_id: @room_oaxaca.id)
   GuestRoom.create!(guest_id: @guest_hady.id, room_id: @room_jocotopec.id)
-
-
-
 end 
 
   describe "as a visitor" do
@@ -61,8 +58,6 @@ end
         within("div#rooms_stayed_in") do
           expect(page).to have_content(@room_san_jose.suite)
         end 
-
-
       end
 
 
