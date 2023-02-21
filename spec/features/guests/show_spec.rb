@@ -41,4 +41,9 @@ RSpec.describe 'When a user visit a guests show page', type: :feature do
 			expect(page).to have_content("Lava Pit ($666 at the Hells Hotel)")
 		end
 	end
+
+	scenario 'see a form to add a room to this guest' do
+		visit "/guests/#{@guest1.id}"
+		expect(page).to have_selector('div#add_rooms')
+	end
 end
