@@ -1,0 +1,2 @@
+class GuestRoom < ApplicationRecord
+end
