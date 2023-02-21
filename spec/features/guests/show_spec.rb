@@ -32,6 +32,17 @@ RSpec.describe 'Guest Show page' do
         expect(page).to have_field(:room_id)
         expect(page).to have_content("Add Room")
       end
+
+      describe 'When I fill in the form' do
+        it 'It should add a room to the guest' do
+          visit "/guests/#{@guest_1.id}"
+
+          fill_in :room_id, with: @room_402.id
+          click_on "Add Room"
+          expect(current_path).to eq("/guests/#{@guest_1.id}")
+          expect(page).to have_content("Rooms: Room 402")
+        end
+      end
     end
   end
 end
