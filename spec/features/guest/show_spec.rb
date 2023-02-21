@@ -41,13 +41,14 @@ describe 'guest show page' do
     guest_room2 = GuestRoom.create!(room_id: room2.id, guest_id: charlize.id)
 
     room3 = Room.create!(hotel_id: budapest.id, suite: "Economy", rate: 75)
-    visit "guests/#{charlize.id}"
+    visit "/guests/#{charlize.id}"
     expect(page).to have_content("Add a Room by its ID:")
     expect(page).to_not have_content("Suite: #{room3.suite}")
     expect(page).to_not have_content("Rate: #{room3.rate}")
     fill_in 'room_id', with: room3.id
     click_on 'Submit'
-    expect(current_path).to eq("guests/#{charlize.id}")
+    save_and_open_page
+    expect(current_path).to eq("/guests/#{charlize.id}")
     expect(page).to have_content("Suite: #{room3.suite}")
     expect(page).to have_content("Rate: #{room3.rate}")
   end
