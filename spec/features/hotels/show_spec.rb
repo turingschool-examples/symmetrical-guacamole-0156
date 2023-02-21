@@ -13,6 +13,7 @@ before(:each) do
   @guest_hady = Guest.create!(name: "Hady", nights: 12)
   @guest_malena = Guest.create!(name: "Malena", nights: 6)
   @guest_sebastian = Guest.create!(name: "Sebastian", nights: 8)
+  @guest_axel = Guest.create!(name: "Axel", nights: 3)
 
   GuestRoom.create!(guest_id: @guest_hady.id, room_id: @room_oaxaca.id)
   GuestRoom.create!(guest_id: @guest_hady.id, room_id: @room_jocotopec.id)
@@ -24,6 +25,9 @@ before(:each) do
   GuestRoom.create!(guest_id: @guest_sebastian.id, room_id: @room_da_flow.id)
   GuestRoom.create!(guest_id: @guest_sebastian.id, room_id: @room_san_jose.id)
 
+  GuestRoom.create!(guest_id: @guest_axel.id, room_id: @room_da_flow.id)
+
+
 end 
 
   describe "as a visitor" do
@@ -32,13 +36,11 @@ end
 
         visit "/hotels/#{@hotel_1.id}"
 
-        expect
-
-
-
-
-
-
+        within("div#unique_list_of_guests") do 
+          expect(page).to have_content(@guest_hady.name)
+          expect(page).to have_content(@guest_malena.name)
+          expect(page).to have_content(@guest_sebastian.name)
+        end
       end 
     end 
   end 
