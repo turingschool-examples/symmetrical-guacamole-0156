@@ -7,8 +7,8 @@
   <li>Rate: <%= room.rate%></li>
   <li>Hotel: <%= room.hotel.name%></li>
   <br>
-</ul>
 <% end %>
+</ul>
 
 <%= form_with url: "/guests/#{@guest.id}/guest_rooms", method: :post, local: true do |f|  %>
  <%= f.label "ID: " %>

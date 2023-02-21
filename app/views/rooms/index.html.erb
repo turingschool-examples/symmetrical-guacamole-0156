@@ -1,11 +1,11 @@
 <h1> Rooms </h1>
-<br>
 <ul>
+<br>
 <%@rooms.each do |room|%>
   <li>Room Suite: <%= room.suite %></li>
   <li>Nightly Rate: <%= room.rate%></li>
   <li>Hotel: <%= room.hotel.name%></li>
   <li># of Guests That Have Stayed in Room: <%= room.guest_count%></li>
   <br>
-</ul>
 <% end %>
+</ul>
