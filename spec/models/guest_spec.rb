@@ -10,6 +10,5 @@ RSpec.describe Guest, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :nights }
     it { should validate_numericality_of :nights }
-
   end
 end
