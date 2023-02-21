@@ -42,7 +42,6 @@ RSpec.describe 'Show', type: :feature do
         describe 'I fill in a field with the id of an existing room and click submit' do
           it 'I am redirected back to the guest`s show page and see the room listed' do
 
-            # save_and_open_page
             expect(page).to have_content("Add a Room to this Guest:")
 
             expect(page).to have_field(:room_id)

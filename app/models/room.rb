@@ -5,5 +5,5 @@ class Room < ApplicationRecord
 
    def guest_count
       guests.count
-    end
+   end
 end

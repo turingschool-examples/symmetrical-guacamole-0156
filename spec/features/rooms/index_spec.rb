@@ -25,14 +25,12 @@ RSpec.describe 'Index', type: :feature do
         expect(page).to have_content('Hotel: Winter Park Hotel')
         expect(page).to have_content('Suite: b27')
         expect(page).to have_content('Rate: 60')
-        # save_and_open_page
         expect(page).to have_content('Guest Count: 2')
 
         expect(page).to have_content('Hotel: Winter Park Hotel')
         expect(page).to have_content('Suite: e42')
         expect(page).to have_content('Rate: 80')
         expect(page).to have_content('Guest Count: 1')
-        save_and_open_page
       end
     end
   end
