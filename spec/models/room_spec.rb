@@ -24,4 +24,14 @@ RSpec.describe Room, type: :model do
     room1 = Room.create!(hotel_id: budapest.id, suite: "Presidential", rate: 125)
     expect(room1.hotel_name).to eq(budapest.name)
   end
+
+  it '#number_of_guests' do 
+    budapest = Hotel.create!(name: "Grand Budapest", location: 'Turkey')
+    room1 = Room.create!(hotel_id: budapest.id, suite: "Presidential", rate: 125)
+    charlize = Guest.create!(name:"Charlize Theron", nights: 3)
+    manny = Guest.create!(name:"Manny", nights: 2)
+    guest_room1 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
+    guest_room1 = GuestRoom.create!(room_id: room1.id, guest_id: manny.id)
+    expect(room1.number_of_guests).to eq(2)
+  end
 end

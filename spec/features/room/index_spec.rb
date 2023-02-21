@@ -26,7 +26,6 @@ describe 'room index' do
       expect(page).to have_content(room2.suite)
       expect(page).to have_content(room2.rate)
       expect(page).to have_content(room2.number_of_guests)
-
     end
   end
 end
