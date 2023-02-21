@@ -33,7 +33,7 @@ RSpec.describe "/guests/show", type: :feature do
       end
 
       it 'has a form to add a room to this guest' do
-        expect(page).to have_field("ID")
+        expect(page).to have_field(:room_id)
         expect(page).to have_button("Submit")
       end
     end

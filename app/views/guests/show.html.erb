@@ -10,3 +10,8 @@ Nightly Rate: <%= number_to_currency(room.rate) %>
 <% end %>
 
 Add Room:
+<%= form_with url: "/guests/#{@guest.id}/guest_rooms", method: :post, local: true do |f| %>
+  <%= f.label "Room ID:" %>
+  <%= f.number_field :room_id %>
+  <%= f.submit "Submit" %>
+<% end %>
