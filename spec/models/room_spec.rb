@@ -15,7 +15,7 @@ RSpec.describe Room, type: :model do
         @matt = Guest.create!(name: 'Matt Smith', nights: 2)
         GuestRoom.create!(guest:@mike, room: @room1)
         GuestRoom.create!(guest:@mike, room: @room2)
-        GuestRoom.create!(guest:@matt, room: @room1)
+        GuestRoom.create!(guest:@mike, room: @room1)
         GuestRoom.create!(guest:@matt, room: @room2)
         GuestRoom.create!(guest:@mike, room: @room2)
         GuestRoom.create!(guest:@mike, room: @room1)
@@ -25,14 +25,14 @@ RSpec.describe Room, type: :model do
       end
 
       it '#guest_count' do
-        expect(@room1.guest_count).to eq(3)
+        expect(@room1.guest_count).to eq(1)
         expect(@room1.guest_count).to_not eq(6)
-        expect(@room1.guest_count).to eq(3)
-        expect(@room1.guest_count).to_not eq(nil)
+        expect(@room2.guest_count).to eq(2)
+        expect(@room2.guest_count).to_not eq(nil)
       end
 
       it '#unique_guest_name' do
-        expect(@room1.unique_guest_name).to eq([@mike,@matt])
+        expect(@room1.unique_guest_name).to eq([@mike])
         expect(@room2.unique_guest_name).to eq([@mike,@matt])
       end
     end
