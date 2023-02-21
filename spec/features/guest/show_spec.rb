@@ -18,7 +18,9 @@ describe 'guest show page' do
     expect(page).to have_content("Guest name: #{charlize.name}")
     expect(page).to have_content("Rooms Stayed in:")
     expect(page).to have_content("Suite: #{room1.suite}")
+    expect(page).to have_content("Rate: #{room1.rate}")
     expect(page).to have_content("Hotel: #{budapest.name}")
     expect(page).to have_content("Suite: #{room2.suite}")
+    expect(page).to have_content("Rate: #{room2.rate}")
   end
 end
