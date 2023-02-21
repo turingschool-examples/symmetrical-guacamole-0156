@@ -32,7 +32,7 @@ RSpec.describe "Index", type: :feature do
         expect(page).to have_content("Hotel: Echo Mountain Inn")
       end
 
-      xit "the number of guests that have stayed in that room." do
+      it "the number of guests that have stayed in that room." do
   
         expect(page).to have_content("King Bed Room: 3") 
         expect(page).to have_content("Twin Bed Room: 1")
