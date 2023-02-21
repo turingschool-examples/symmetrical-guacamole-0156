@@ -40,6 +40,19 @@ RSpec.describe Room, type: :feature do
       end
 
     end
-    it "displays all of the guests that have stayed in each room"
+    it "displays the number of guests that have stayed in that room" do
+      save_and_open_page
+       within "#room_info-#{room_1.id}" do 
+        expect(page).to have_content("Suite: #{room_1.suite}\nRate: #{room_1.rate}\nHotel: Comfy Palace\nNumber of Guests: 3")
+      end
+
+      within "#room_info-#{room_2.id}" do 
+        expect(page).to have_content("Suite: #{room_2.suite}\nRate: #{room_2.rate}\nHotel: Comfy Palace\nNumber of Guests: 2")
+      end
+
+      within "#room_info-#{room_3.id}" do 
+        expect(page).to have_content("Suite: #{room_3.suite}\nRate: #{room_3.rate}\nHotel: Comfy Palace\nNumber of Guests: 2")
+      end
+    end
   end
 end
