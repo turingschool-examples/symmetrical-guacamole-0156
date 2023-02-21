@@ -20,13 +20,20 @@ RSpec.describe 'Show', type: :feature do
 
   describe 'When I visit /guests/:id' do
     describe 'Story 1' do
-      it 'I see the guest`s name & list of all the rooms they`ve stayed in' do
-        expect(page).to have_content("Andra")
-        expect(page).to have_content("Presedential")
-        expect(page).to have_content("b27")
+      it 'I see the guest`s name' do
+        expect(page).to have_content("Andra's Rooms Stayed In")
+        save_and_open_page
       end
 
-      it 'I see room`s suite, nightly rate, & name of hotel it belongs to'
+      it 'I see guest`s list of rooms, the room`s suite, nightly rate, & name of hotel it belongs to' do
+        expect(page).to have_content("Hotel: Echo Mountain Inn")
+        expect(page).to have_content("Suite: Presedential")
+        expect(page).to have_content("Rate: 125")
+
+        expect(page).to have_content("Hotel: Winter Park Hotel")
+        expect(page).to have_content("Suite: b27")
+        expect(page).to have_content("Rate: 60")
+      end
     end
   end
 end
