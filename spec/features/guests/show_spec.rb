@@ -43,7 +43,7 @@ RSpec.describe 'guest show page', type: :feature do
 		it 'shows a form to add a room to the guest' do
 			expect(page).to have_field(:room_id)
 			expect(page).to_not have_content(room_2.suite)
-			save_and_open_page
+			
 			within '#room_form' do
 				select room_2.id, from: :room_id
 				click_button "Add Room"
