@@ -8,3 +8,11 @@
     </ul>
   <% end %>
 </div>
+<div class="form">
+<b>Add a New Room</b>
+ <%= form_with url: "/guests/#{@guest.id}/rooms", method: :post, local: true do |form| %>
+        <%= form.label :room_id, "Room Id:  "%><br><br>
+        <%= form.number_field :room_id %>
+        <%= form.submit "Submit" %>
+      <% end %>
+</div>
