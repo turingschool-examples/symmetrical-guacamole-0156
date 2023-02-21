@@ -16,6 +16,8 @@ RSpec.describe "Guest#Show" do
     @guest_6 = create(:guest)
 
     @room_1.guests << @guest_1
+    @room_2.guests << @guest_1
+
     @room_1.guests << @guest_2
     @room_2.guests << @guest_3
     @room_3.guests << @guest_4
@@ -32,8 +34,17 @@ RSpec.describe "Guest#Show" do
     expect(page).to_not have_content("Name: #{@guest_1.name}")
   end
 
-  xit "shows a list of all the ROOMS they've stayed in" do
-    
+  it "shows a list of all the ROOMS they've stayed in" do
+    visit "/guests/#{@guest_1.id}"
+    save_and_open_page
+
+    within "#room_#{@room_1.id}" do
+      expect(page).to have_content("Suite Name: #{@room_1.name}")
+    end
+
+    within "#room_#{@room_2.id}" do
+      expect(page).to have_content("Suite Name: #{@room_2.name}")
+    end
   end
 
   xit "includes the rooms SUITE, nightly RATE, and HOTEL NAME it belongs to" do
