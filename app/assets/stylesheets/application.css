@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+.room {
+  font-family: arial;
+  font-size: 15px;
+  border-radius: 25px;
+  border: 5px solid #2d3f1f;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+}
