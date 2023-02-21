@@ -10,16 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_09_221054) do
+ActiveRecord::Schema.define(version: 2023_02_21_161523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "guests", force: :cascade do |t|
+    t.string "name"
+    t.integer "nights"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "hotels", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "room_guests", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guest_id"], name: "index_room_guests_on_guest_id"
+    t.index ["room_id"], name: "index_room_guests_on_room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -31,5 +47,7 @@ ActiveRecord::Schema.define(version: 2023_02_09_221054) do
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
+  add_foreign_key "room_guests", "guests"
+  add_foreign_key "room_guests", "rooms"
   add_foreign_key "rooms", "hotels"
 end
