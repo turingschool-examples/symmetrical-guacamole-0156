@@ -1,7 +1,7 @@
 <h1>Name: <%= @guest.name %></h1>
 <h3>Rooms</h3>
 <% @guest.rooms.each do |room| %>
-  <div class="room_<%= room.id %>">
+  <div id="room_<%= room.id %>">
   <p>Suite Name: <%= room.suite %></p>
   <p>Nightly Rate: <%= room.rate %></p>
   <p>Hotel: <%= room.hotel.name %></p>

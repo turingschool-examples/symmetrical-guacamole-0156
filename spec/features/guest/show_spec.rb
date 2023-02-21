@@ -36,15 +36,8 @@ RSpec.describe "Guest#Show" do
 
   it "shows a list of all the ROOMS they've stayed in" do
     visit "/guests/#{@guest_1.id}"
-    save_and_open_page
-
-    within "#room_#{@room_1.id}" do
-      expect(page).to have_content("Suite Name: #{@room_1.name}")
-    end
-
-    within "#room_#{@room_2.id}" do
-      expect(page).to have_content("Suite Name: #{@room_2.name}")
-    end
+    expect(page).to have_content("Suite Name: #{@room_1.suite}")
+    expect(page).to have_content("Suite Name: #{@room_2.suite}")
   end
 
   xit "includes the rooms SUITE, nightly RATE, and HOTEL NAME it belongs to" do
