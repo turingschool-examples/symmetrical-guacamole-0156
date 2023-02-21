@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   get '/guests/:id', to: 'guests#show'
   post '/guests/:guest_id/rooms', to: 'room_guests#create'
 
+  get '/hotels/:id', to: 'hotels#show'
+
   get '/rooms', to: 'rooms#index'
 end
