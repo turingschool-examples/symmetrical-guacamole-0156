@@ -4,4 +4,8 @@ class Guest < ApplicationRecord
 
   validates_presence_of :name, :nights
   validates_numericality_of :nights
+
+  def self.total_guests
+    self.distinct.count
+  end
 end
