@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Rooms Index Page', type: :feature do
+RSpec.describe 'Hotels Index Page', type: :feature do
 
   let(:hotel_1) { Hotel.create!(name: 'The Stanley', location: 'Estes Park, CO') }
   let(:hotel_2) { Hotel.create!(name: 'The Brown Palace', location: 'Denver, CO') }
@@ -9,27 +9,26 @@ RSpec.describe 'Rooms Index Page', type: :feature do
   let(:room_3) { hotel_2.rooms.create!(rate: 60, suite: 'Suite 3') }
   let(:john) { Guest.create!(name: 'John Smith', nights: 2) }
   let(:jane) { Guest.create!(name: 'Jane Smith', nights: 3) }
+  let!(:james) { Guest.create!(name: 'James Smith', nights: 2) }
 
   before do
     GuestRoom.create!(guest: john, room: room_1)
-    GuestRoom.create!(guest: john, room: room_1)
     GuestRoom.create!(guest: jane, room: room_1)
     GuestRoom.create!(guest: john, room: room_2)
+    GuestRoom.create!(guest: jane, room: room_2)
     GuestRoom.create!(guest: jane, room: room_3)
+    GuestRoom.create!(guest: james, room: room_1)
 
-    visit '/rooms'
+    visit "/hotels/#{hotel_2.id}"
   end
 
   describe 'As a visitor' do
     describe 'when I visit the rooms index page' do
-      it 'I see the rooms and their attributes listed' do
-        expect(page).to have_content("All Rooms:")
-
-        within 'ul#room_info' do
-          expect(page).to have_content("#{room_1.suite}: $#{room_1.rate}.00, #{hotel_1.name}, Number of Guests: 2")
-          expect(page).to have_content("#{room_2.suite}: $#{room_2.rate}.00, #{hotel_2.name}, Number of Guests: 1")
-          expect(page).to have_content("#{room_3.suite}: $#{room_3.rate}.00, #{hotel_2.name}, Number of Guests: 1")
-        end
+      it 'displays all of the unique guests that have stayed at this hotel' do
+        expect(page).to have_content("The Brown Palace")
+        save_and_open_page
+        expect(page).to have_content("All Guest Names: #{john.name}, #{jane.name}")
+        expect(page).to have_content("All Guest Names: #{john.name}, #{jane.name}, #{james.name}")
       end
     end
   end
