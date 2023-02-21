@@ -6,4 +6,9 @@ RSpec.describe Room, type: :model do
     it { should have_many :guest_rooms }
     it { should have_many(:guests).through(:guest_rooms) }
   end
+
+  describe 'validations' do
+    it { should validate_presence_of :rate }
+    it { should validate_presence_of :suite }
+  end
 end
