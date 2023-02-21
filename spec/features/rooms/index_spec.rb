@@ -22,7 +22,7 @@ RSpec.describe "Index", type: :feature do
     context "I see" do
       it "a list of all rooms including the room's suite, nightly rate, 
         and the name of the hotel that it belongs to" do
-        save_and_open_page
+        # save_and_open_page
         expect(page).to have_content("Suite: King Bed Room")
         expect(page).to have_content("Rate: $125.00")
         expect(page).to have_content("Suite: Twin Bed Room")
@@ -34,9 +34,9 @@ RSpec.describe "Index", type: :feature do
 
       it "the number of guests that have stayed in that room." do
   
-        expect(page).to have_content("King Bed Room: 3") 
-        expect(page).to have_content("Twin Bed Room: 1")
-        expect(page).to have_content("Presidential Room: 1")
+        expect(page).to have_content("King Bed Room's Guest Count: 3") 
+        expect(page).to have_content("Twin Bed Room's Guest Count: 1")
+        expect(page).to have_content("Presidential Room's Guest Count: 1")
       end
     end
   end
