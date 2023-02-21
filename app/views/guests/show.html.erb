@@ -2,7 +2,14 @@
 <p> Rooms Stayed In:</p>
 <ul>
 <% @guest.rooms.each do |room| %>
-<li> <%= room.suite %> ($<%= room.rate %> at the <%= room.hotel.name %>) </li>
+<li> <%= room.suite %> <%= room.id %> ($<%= room.rate %> at the <%= room.hotel.name %>) </li>
 <% end %>
 </ul>
 </div>
+
+<h2>Add another room</h2>
+<%= form_with url: "/guest_rooms/#{@guest.id}", method: :post, local: true do |f| %>
+  <%= f.label :room_id, "Find room with ID" %>
+  <%= f.text_field :room_id %>
+  <%= f.submit "Add Room" %>
+<% end %>
