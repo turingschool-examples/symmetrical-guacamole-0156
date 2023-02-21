@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GuestRoom, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should belong_to :guest}
+  it {should belong_to :room }
 end
