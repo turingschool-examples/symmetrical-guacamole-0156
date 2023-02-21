@@ -1,0 +1,7 @@
+<h1><%="Guest Name: #{@guest.name}"%></h1>
+
+<div id="rooms_stayed_in">
+  <%@guest.rooms.each do |room|%>
+    <p><%=("#{@guest.name} stayed in the #{room.suite} at #{room.hotel.name} for #{room.rate} per night.")%></p>
+  <%end%>
+</div>
