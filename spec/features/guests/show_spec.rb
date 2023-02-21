@@ -29,14 +29,14 @@ describe "When I visit a guest's show page", type: :feature do
 
       within "##{@penthouse.suite}" do
         expect(page).to have_content("Suite: #{@penthouse.suite}")
-        expect(page).to have_content("Hotel: #{@hilton.name}")
         expect(page).to have_content("Nightly Rate: $#{@penthouse.rate}")
+        expect(page).to have_content("Hotel: #{@hilton.name}")
       end
 
       within "##{@king.suite}" do
         expect(page).to have_content("Suite: #{@king.suite}")
-        expect(page).to have_content("Hotel: #{@hilton.name}")
         expect(page).to have_content("Nightly Rate: $#{@king.rate}")
+        expect(page).to have_content("Hotel: #{@hilton.name}")
       end
 
       expect(page).to_not have_content(@double.suite)
@@ -74,8 +74,8 @@ describe "When I visit a guest's show page", type: :feature do
 
       within "##{@double.suite}" do
         expect(page).to have_content("Suite: #{@double.suite}")
-        expect(page).to have_content("Hotel: #{@double_tree.name}")
         expect(page).to have_content("Nightly Rate: $#{@double.rate}")
+        expect(page).to have_content("Hotel: #{@double_tree.name}")
       end
     end
   end

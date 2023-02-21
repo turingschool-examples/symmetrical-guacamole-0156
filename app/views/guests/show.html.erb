@@ -1,13 +1,16 @@
 <h1><%= @guest.name %></h1>
 <% @guest.rooms.each do |room| %>
 <div id="<%= room.suite %>">
+<ul>
   <h3><li>Suite: <%= room.suite %></li></h3>
-  <p>Hotel: <%= room.hotel.name %></p>
   <p>Nightly Rate: $<%= room.rate %></p>
+    <p>Hotel: <%= room.hotel.name %></p>
+</ul>
 </div>
 <% end %>
 <br>
 <div id="add_a_room"> 
+<h3>Add a Room:</h3>
 <%= form_with url: "/guests/#{@guest.id}/guest_rooms", method: :post, local: :true do |f| %>
   <%= f.label :room_id, "Enter the room ID" %>
   <%= f.number_field :room_id %>
