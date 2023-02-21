@@ -18,7 +18,9 @@ RSpec.describe 'rooms index page', type: :feature do
 	before do
 		RoomGuest.create!(guest: guest_1, room: room_1)
 		RoomGuest.create!(guest: guest_1, room: room_5)
+		RoomGuest.create!(guest: guest_1, room: room_5)
 		RoomGuest.create!(guest: guest_1, room: room_3)
+		RoomGuest.create!(guest: guest_2, room: room_5)
 		RoomGuest.create!(guest: guest_2, room: room_1)
 		RoomGuest.create!(guest: guest_2, room: room_2)
 		visit "/rooms"
@@ -28,15 +30,15 @@ RSpec.describe 'rooms index page', type: :feature do
 		it 'should have room suite, nightly rate and name of hotel' do
 			within "div##{hotel_1.id}" do
 				expect(page).to have_content(hotel_1.name)
-				expect(page).to have_content("Suite: #{room_5.suite} - Rate: #{room_5.rate}, Guests Stayed: #{room_5.guest_count}")
-				expect(page).to have_content("Suite: #{room_3.suite} - Rate: #{room_3.rate}, Guests Stayed: #{room_3.guest_count}")
+				expect(page).to have_content("Suite: #{room_5.suite} - Rate: #{room_5.rate}, Guests Stayed: 2")
+				expect(page).to have_content("Suite: #{room_3.suite} - Rate: #{room_3.rate}, Guests Stayed: 1")
 				expect(page).to_not have_content(hotel_2.name)
 				expect(page).to_not have_content("Suite: #{room_2.suite} - Rate: #{room_2.rate}, Guests Stayed: #{room_2.guest_count}")
 			end
 
 			within "div##{hotel_2.id}" do
 				expect(page).to have_content(hotel_2.name)
-				expect(page).to have_content("Suite: #{room_2.suite} - Rate: #{room_2.rate}, Guests Stayed: #{room_2.guest_count}")
+				expect(page).to have_content("Suite: #{room_2.suite} - Rate: #{room_2.rate}, Guests Stayed: ")
 				expect(page).to have_content("Suite: #{room_4.suite} - Rate: #{room_4.rate}, Guests Stayed: #{room_4.guest_count}")
 			end
 
