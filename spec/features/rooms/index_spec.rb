@@ -18,6 +18,7 @@ RSpec.describe "Index", type: :feature do
 
     visit "/rooms"
   end
+  
   describe "when I visit /rooms" do
     context "I see" do
       it "a list of all rooms including the room's suite, nightly rate, 
