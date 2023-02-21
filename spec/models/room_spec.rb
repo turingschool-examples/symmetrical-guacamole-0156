@@ -31,7 +31,7 @@ RSpec.describe Room, type: :model do
     charlize = Guest.create!(name:"Charlize Theron", nights: 3)
     manny = Guest.create!(name:"Manny", nights: 2)
     guest_room1 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
-    guest_room1 = GuestRoom.create!(room_id: room1.id, guest_id: manny.id)
+    guest_room2 = GuestRoom.create!(room_id: room1.id, guest_id: manny.id)
     expect(room1.number_of_guests).to eq(2)
   end
 end
