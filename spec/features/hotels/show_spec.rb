@@ -26,7 +26,7 @@ describe "'When I visit a hotel's show page", type: :feature do
   describe 'Extension' do
     it "displays a unique list of all guests that have stayed at that hotel" do
       visit "/hotels/#{@hilton.id}"
-save_and_open_page
+
       within "#guests" do
         expect(page).to have_content("Name: #{@hailey.name}, Nights: #{@hailey.nights}")
         expect(page).to have_content("Name: #{@ivan.name}, Nights: #{@ivan.nights}")
