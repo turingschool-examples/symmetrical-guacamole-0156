@@ -1,0 +1,11 @@
+<h1>All Rooms</h1>
+<br>
+<ul>
+  <% @rooms.each do |room| %>
+    <div id = "room_info-<%= room.id %>">
+      <li> <%= room.suite %> - rate: $<%= room.rate %>/night, hotel: <%= room.hotel.name %></li>
+      <p>Total Count of Guests: <%= COUNT HERE %></p>
+      <br>
+    </div>
+  <% end %>
+</ul>
