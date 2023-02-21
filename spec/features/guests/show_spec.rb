@@ -4,8 +4,8 @@ RSpec.describe 'Guest Show page' do
 
   before do 
     @hotel_1 = Hotel.create!(name: 'Stanly Hotel', location: 'Estes Park')
-    @room_401 = @hotel_1.rooms.create!(rate: 50, suite: 'Executive Suite')
-    @guest_1 = Guest.create!(name: 'jeff', nights: 1)
+    @room_401 = @hotel_1.rooms.create!(rate: 50, suite: 'Room 401')
+    @guest_1 = Guest.create!(name: 'Jeff', nights: 1)
     GuestRoom.create(guest: @guest_1, room: @room_401)
   end
   describe 'As a user' do
@@ -15,6 +15,16 @@ RSpec.describe 'Guest Show page' do
 
         expect(page).to have_content("Jeff's page")
       end 
+
+      it 'And I see a list of all the rooms they have stayed in as well as room fields and hotel' do
+        visit "/guests/#{@guest_1.id}"
+
+        save_and_open_page
+        expect(page).to have_content("Rooms stayed in")
+        expect(page).to have_content("Room: Room 401")
+        expect(page).to have_content("Rate: 50")
+        expect(page).to have_content("Hotel: Stanly Hotel")
+      end
     end
   end
 end
