@@ -37,5 +37,16 @@ RSpec.describe "/guests/show", type: :feature do
         expect(page).to have_button("Submit")
       end
     end
+    context 'when I fill out the form and click submit' do
+      it 'redirects me back to the guest show page and displays added room' do
+        fill_in :room_id, with: high.id
+        click_on "Submit"
+
+        expect(current_path).to eq("/guests/#{steve.id}")
+        expect(page).to have_content("High Roller")
+        expect(page).to have_content("Nightly Rate: $200.00")
+        expect(page).to have_content("Tyrolean Inn")
+      end
+    end
   end
 end
