@@ -23,15 +23,20 @@ RSpec.describe "Guest#Show" do
     @room_3.guests << @guest_6
   end
 
-  it "shows the guests NAMES" do
+  it "shows the guests NAME" do
+    visit "/guests/#{@guest_1.id}"
+    expect(page).to have_content(@guest_1.name)
+
+    visit "/guests/#{@guest_2.id}"
+    expect(page).to have_content(@guest_2.name)
+    expect(page).to_not have_content(@guest_1.name)
+  end
+
+  xit "shows a list of all the ROOMS they've stayed in" do
     
   end
 
-  it "shows a list of all the ROOMS they've stayed in" do
-    
-  end
-
-  it "includes the rooms SUITE, nightly RATE, and HOTEL NAME it belongs to" do
+  xit "includes the rooms SUITE, nightly RATE, and HOTEL NAME it belongs to" do
     
   end
 end
