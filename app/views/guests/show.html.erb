@@ -1,0 +1,19 @@
+<h1>Guests <%= @guest.name %></h1>
+<hr>
+<div id="rooms">
+  <b>Guest <%= @guest.name %>'s Rooms:</b><br>
+  <% @guest.rooms.each do |room| %>
+  <ul> 
+  <li>Suite:<%= room.name %><li><br>
+  <li>Rate:<%= room.rate %><li><br>
+  <%# <li>Name:<%= room.hotel.name %><li><br> %>
+  <% end %>
+  </ul>
+
+  <div id="add-room">
+  <%= form_with model: @guest, local: true do |form| %>
+  <%= form.label :room_id %>
+  <%= form.text_field :room_id %>
+  <%= form.submit "Submit" %>
+  <% end %>
+</div>
