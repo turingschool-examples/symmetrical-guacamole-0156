@@ -40,7 +40,12 @@ RSpec.describe "Guest#Show" do
     expect(page).to have_content("Suite Name: #{@room_2.suite}")
   end
 
-  xit "includes the rooms SUITE, nightly RATE, and HOTEL NAME it belongs to" do
-    
+  it "includes the rooms SUITE, nightly RATE, and HOTEL NAME it belongs to" do
+    visit "/guests/#{@guest_1.id}"
+    expect(page).to have_content("Nightly Rate: #{@room_1.rate}")
+    expect(page).to have_content("Nightly Rate: #{@room_2.rate}")
+
+    expect(page).to have_content("Hotel: #{@hotel.name}")
+    expect(page).to have_content("Hotel: #{@hotel.name}")
   end
 end
