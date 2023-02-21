@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Hotel, type: :model do
+RSpec.describe "Hotel Show Page" do 
   before(:each) do 
     @guest_1 = Guest.create!(name: "Kimberly Kimbers", nights: 2)
     @guest_2 = Guest.create!(name: "Timothy Timmons", nights: 7)
@@ -24,16 +24,32 @@ RSpec.describe Hotel, type: :model do
     @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
     @guest_rooms_1 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_4.id)
   end
-  describe 'relationships' do
-    it {should have_many :rooms}
-    it {should have_many :guest_rooms}
-    it {should have_many :guests}
-  end
 
-  describe "#guests_stayed" do 
-    it 'is a list of guests that stayed at the hotel' do 
-      expect(@hotel_1.guests_stayed).to eq([@guest_1, @guest_2])
-      expect(@hotel_2.guests_stayed).to eq([@guest_3])
+  describe 'When visiting the hotel show page' do 
+    it 'has a unique list of all guests that stayed in this hotel' do 
+      visit "/hotels/#{@hotel_1.id}"
+
+      expect(page).to have_content(@hotel_1.name)
+      expect(page).to_not have_content(@hotel_2.name)
+
+      within(".hotel_guests") do 
+        expect(page).to have_content("Kimberly Kimbers", count: 1)
+        expect(page).to have_content("Timothy Timmons", count: 1)
+        expect(page).to_not have_content("Nathan Nathaniels")
+      end
+    end
+
+    it 'has infor for another hotel' do 
+       visit "/hotels/#{@hotel_2.id}"
+
+      expect(page).to have_content(@hotel_2.name)
+      expect(page).to_not have_content(@hotel_1.name)
+
+      within(".hotel_guests") do 
+        expect(page).to have_content("Nathan Nathaniels", count: 1)
+        expect(page).to_not have_content("Kimberly Kimbers", count: 1)
+        expect(page).to_not have_content("Timothy Timmons", count: 1)
+      end 
     end
   end
 end
