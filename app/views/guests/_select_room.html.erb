@@ -1,0 +1,6 @@
+<div id='room_form'>
+	<%= form_with url: uri, method: :post, local: true do |f| %>
+		<%= f.collection_select label, list, :id, :id %>
+		<%= f.submit button %>
+	<% end %>
+</div>

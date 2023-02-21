@@ -8,9 +8,9 @@
 	<% end %>
 </ul>
 
-<div id='room_form'>
-	<%= form_with url: "/room_guests/#{@guest.id}", method: :post, local: true do |f| %>
-		<%= f.collection_select :room_id, @all_rooms, :id, :id %>
-		<%= f.submit 'Add Room' %>
-	<% end %>
-</div>
+<%= render partial: 'select_room', locals: {
+	uri: "/room_guests/#{@guest.id}",
+	label: :room_id,
+	list: @all_rooms,
+	button: 'Add Room'
+} %>
