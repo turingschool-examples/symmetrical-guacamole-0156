@@ -30,15 +30,18 @@ RSpec.describe "Show", type: :feature do
       end
 
       it "a form to add a room to this guest." do
-        # binding.pry
-        save_and_open_page
-        expect(find('form')).to have_content('Suite')
+        
+        expect(page).to have_field(:room_id)
         expect(page).to have_button("Submit")
       end
       
-      xit "I fill in a field with the id of an existing room and I click submit then I am
-        redirected back to the guest's show page and I see the room now listed under this guest's rooms" do
-
+      it "I fill in a field with the id of an existing room and I click submit then I am
+      redirected back to the guest's show page and I see the room now listed under this guest's rooms" do
+        # binding.pry
+        fill_in :room_id, with: pres.id
+        click_on "Submit"
+        
+        # save_and_open_page
         expect(current_path).to eq("/guests/#{jimmy.id}")
         expect(page).to have_content("Suite: Presidential Room")
       end
