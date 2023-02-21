@@ -1,0 +1,9 @@
+<h1> <%= @guest.name %>'s Page</h1>
+<br>
+<h4>Past Stays:</h4>
+<ul>
+  <% @guest.rooms.each do |room| %>
+    <li> <%= room.suite %> - rate: $<%= room.rate %>/night, hotel: <%= room.hotel.name %></li>
+    <br>
+  <% end %>
+</ul>
