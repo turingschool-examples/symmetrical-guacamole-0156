@@ -16,6 +16,7 @@ describe "'When I visit a hotel's show page", type: :feature do
 
     GuestRoom.create!(guest: @jasmine, room: @penthouse)
     GuestRoom.create!(guest: @jasmine, room: @king)
+    GuestRoom.create!(guest: @jasmine, room: @king)
     GuestRoom.create!(guest: @ivan, room: @king)
     GuestRoom.create!(guest: @ivan, room: @double)
     GuestRoom.create!(guest: @hailey, room: @king)

@@ -21,6 +21,7 @@ RSpec.describe Hotel, type: :model do
   
       GuestRoom.create!(guest: @jasmine, room: @penthouse)
       GuestRoom.create!(guest: @jasmine, room: @king)
+      GuestRoom.create!(guest: @jasmine, room: @king)
       GuestRoom.create!(guest: @ivan, room: @king)
       GuestRoom.create!(guest: @ivan, room: @double)
       GuestRoom.create!(guest: @hailey, room: @king)
