@@ -13,15 +13,25 @@ RSpec.describe 'show view' do
   before do
     GuestRoom.create!(guest: steve, room: room_1)
     GuestRoom.create!(guest: steve, room: room_2)
-    GuestRoom.create!(guest: dave, room: room_2)
+    GuestRoom.create!(guest: dave, room: room_3)
   end
 
   it 'displays list of all the rooms they have stayed in with with all attributes' do
+
     visit "/guests/#{steve.id}"
 
+    expect(page).to have_content(steve.name)
     expect(page).to have_content(room_1.suite)
     expect(page).to have_content(room_1.rate)
-    expect(page).to have_content(room_1.location)
+    expect(page).to have_content(room_2.suite)
+    expect(page).to have_content(room_2.rate)
+    expect(page).to have_content(harbor.name)
 
+    visit "/guests/#{dave.id}"
+
+    expect(page).to have_content(dave.name)
+    expect(page).to have_content(room_3.suite)
+    expect(page).to have_content(room_3.rate)
+    expect(page).to have_content(holliday.name)
   end
 end

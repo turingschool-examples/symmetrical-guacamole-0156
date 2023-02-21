@@ -1,8 +1,8 @@
 <%= @guest.name %>
-<% binding.pry %>
-<%= @guest.rooms.first.suite %>
-<%= @guest.rooms.first.rate %>
-<%= @guest.name %>
-<%= @guest.name %>
-<%= @guest.name %>
-<%= @guest.name %>
+<p> Rooms Stayed In:</p>
+<ul>
+<% @guest.rooms.each do |room| %>
+<li> <%= room.suite %> ($<%= room.rate %> at the <%= room.hotel.name %>) </li>
+<% end %>
+</ul>
+</div>
