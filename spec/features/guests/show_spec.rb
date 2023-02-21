@@ -31,8 +31,8 @@ RSpec.describe "Show", type: :feature do
 
       it "a form to add a room to this guest." do
         # binding.pry
-        # save_and_open_page
-        expect(page).to have_field(:suite)
+        save_and_open_page
+        expect(find('form')).to have_content('Suite')
         expect(page).to have_button("Submit")
       end
       

@@ -5,5 +5,10 @@ Rooms:
 <% @guest.rooms.each do |room| %>
   Rate: $<%= room.rate %>.00, Suite: <%= room.suite %>, Hotel: <%= room.hotel.name %>
   <br>
-  <%=%>
+<% end %>
+
+<%= form_with url: "guests/#{@guest.id}/guest_rooms", method: :post, local: true do |f| %>
+  <%= f.label :suite  %>
+  <%= f.text_field :Suite %>
+  <%= f.submit "Submit" %>
 <% end %>
