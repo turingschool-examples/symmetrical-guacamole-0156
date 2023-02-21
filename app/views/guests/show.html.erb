@@ -6,3 +6,12 @@
     <li><%= room.suite %>, <%= number_to_currency(room.rate) %>, <%= room.hotel.name %></li><br>
 <% end %>
 </ul>
+
+<h3>Add a Room:</h3>
+<div id="add_room">
+  <%= form_with url: "/guests/#{@guest.id}/guest_rooms", method: :post, local: true do |form| %>
+    <%= form.label :room_id, "ID:" %>
+    <%= form.number_field :room_id %>
+    <%= form.submit :Submit %>
+  <% end %>
+</div>
