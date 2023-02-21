@@ -10,7 +10,7 @@ describe "When I visit a guest's show page", type: :feature do
 
     @penthouse = @hilton.rooms.create!(rate: 350, suite: "Penthouse")
     @king = @hilton.rooms.create!(rate: 175, suite: "King")
-    @double_queen = @double_tree.rooms.create!(rate: 190, suite: "Double Queen")
+    @double = @double_tree.rooms.create!(rate: 190, suite: "Double")
 
     GuestRoom.create!(guest: @jasmine, room: @penthouse)
     GuestRoom.create!(guest: @jasmine, room: @king)
@@ -29,17 +29,17 @@ describe "When I visit a guest's show page", type: :feature do
 
       within "##{@penthouse.suite}" do
         expect(page).to have_content("Suite: #{@penthouse.suite}")
-        expect(page).to have_content("Nightly Rate: $#{@penthouse.rate}")
         expect(page).to have_content("Hotel: #{@hilton.name}")
+        expect(page).to have_content("Nightly Rate: $#{@penthouse.rate}")
       end
 
       within "##{@king.suite}" do
         expect(page).to have_content("Suite: #{@king.suite}")
-        expect(page).to have_content("Nightly Rate: $#{@king.rate}")
         expect(page).to have_content("Hotel: #{@hilton.name}")
+        expect(page).to have_content("Nightly Rate: $#{@king.rate}")
       end
 
-      expect(page).to_not have_content(@double_queen.suite)
+      expect(page).to_not have_content(@double.suite)
     end
   end
 
@@ -57,7 +57,7 @@ describe "When I visit a guest's show page", type: :feature do
       visit "/guests/#{@jasmine.id}"
 
       within "#add_a_room" do
-        fill_in :room_id, with: @double_queen.id
+        fill_in :room_id, with: @double.id
         click_button "Submit"
       end
 
@@ -68,13 +68,15 @@ describe "When I visit a guest's show page", type: :feature do
       visit "/guests/#{@jasmine.id}"
 
       within "#add_a_room" do
-        fill_in :room_id, with: @double_queen.id
+        fill_in :room_id, with: @double.id
         click_button "Submit"
       end
 
-      expect(page).to have_content("Suite: #{@double_queen.suite}")
-      expect(page).to have_content("Nightly Rate: $#{@double_queen.rate}")
-      expect(page).to have_content("Hotel: #{@double_tree.name}")
+      within "##{@double.suite}" do
+        expect(page).to have_content("Suite: #{@double.suite}")
+        expect(page).to have_content("Hotel: #{@double_tree.name}")
+        expect(page).to have_content("Nightly Rate: $#{@double.rate}")
+      end
     end
   end
 end
