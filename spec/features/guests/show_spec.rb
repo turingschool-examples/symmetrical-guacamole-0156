@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'the guest show page' do
   describe "as a visitor" do
     describe "when I visit a guest's show page" do
-      it "it lists all the rooms they've stayed in, cinluding the room's suite, nightly rate and name of the hotel it belongs to" do
+      it "it lists all the rooms they've stayed in, inluding the room's suite, nightly rate and name of the hotel it belongs to" do
         stanley = Hotel.create!(name: "The Stanley", location: "Estes Park")
         grand_budapest = Hotel.create!(name: "The Grand Budapest Hotel", location: "Budapest")
         pres = Room.create!(suite: 'Presidential', rate: 400, hotel: stanley)
