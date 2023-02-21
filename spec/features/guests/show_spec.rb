@@ -39,8 +39,13 @@ RSpec.describe 'guest show page', type: :feature do
 		end
 	end
 	
-	describe 'add room to guest' do
-		it 'shows a form to add a room to the guest' do
+	describe 'add room to guest form' do
+		it 'has a form to add a room' do
+			expect(page).to have_field(:room_id)
+			expect(page).to have_button('Add Room')
+		end
+
+		it 'adds a room to the guest' do
 			expect(page).to have_field(:room_id)
 			expect(page).to_not have_content(room_2.suite)
 			

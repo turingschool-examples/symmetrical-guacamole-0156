@@ -29,7 +29,7 @@ RSpec.describe 'hotels show page', type: :feature do
 	describe 'list of guests' do
 		it 'it shows a unique list of all guests that have stayed at this hotel' do
 			expect(page).to have_content("List of Guests Who Have Stayed")
-			save_and_open_page
+			
 			within '#guests' do
 				expect(page).to have_content(guest_1.name)
 				expect(page).to have_content(guest_2.name)
@@ -39,7 +39,7 @@ RSpec.describe 'hotels show page', type: :feature do
 			RoomGuest.create!(guest: guest_3, room: room_5)
 
 			visit "/hotels/#{hotel_1.id}"
-			
+
 			within '#guests' do
 				expect(page).to have_content(guest_1.name)
 				expect(page).to have_content(guest_2.name)
