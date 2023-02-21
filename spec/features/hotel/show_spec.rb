@@ -15,10 +15,12 @@ describe 'extension' do
     guest_room1 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
     guest_room2 = GuestRoom.create!(room_id: room1.id, guest_id: danny.id)
     guest_room3 = GuestRoom.create!(room_id: room1.id, guest_id: mark.id)
+    guest_room4 = GuestRoom.create!(room_id: room1.id, guest_id: charlize.id)
+
     visit "/hotels/#{budapest.id}"
     expect(page).to have_content("#{budapest.name} Show Page")
     expect(page).to have_content("List of Guests")
-    expect(page).to have_content(charlize.name)
+    expect(page).to have_content(charlize.name, count: 1)
     expect(page).to have_content(danny.name)
     expect(page).to have_content(mark.name)
   end
