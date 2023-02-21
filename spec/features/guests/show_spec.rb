@@ -5,6 +5,7 @@ RSpec.describe Guest, type: :feature do
 
   let!(:room_1) { comfy_palace.rooms.create!(rate: 100, suite: "Presidential") }
   let!(:room_2) { comfy_palace.rooms.create!(rate: 200, suite: "Couples") }
+  let!(:room_3) { comfy_palace.rooms.create!(rate: 75, suite: "Economy") }
 
   let!(:hannah) { Guest.create!(name: "Hannah", nights: 3) }
 
@@ -21,7 +22,6 @@ RSpec.describe Guest, type: :feature do
     end
 
     it 'displays the rooms that the guest has stayed in with the rooms attributes' do
-      save_and_open_page
 
       within "#room_info-#{room_1.id}" do 
         expect(page).to have_content("Suite: #{room_1.suite}\nRate: #{room_1.rate}\nHotel: Comfy Palace")
@@ -30,6 +30,15 @@ RSpec.describe Guest, type: :feature do
       within "#room_info-#{room_2.id}" do 
         expect(page).to have_content("Suite: #{room_2.suite}\nRate: #{room_2.rate}\nHotel: Comfy Palace")
       end
+    end
+
+    it 'can add a room to the guest' do 
+      save_and_open_page
+
+      fill_in 'room_id', with: "#{room_3.id}" 
+      click_on 'Submit'
+require 'pry'; binding.pry
+      expect(page).to have_content("Suite: #{room_3.suite}\nRate: #{room_3.rate}\nHotel: Comfy Palace")
     end
   end
 end
