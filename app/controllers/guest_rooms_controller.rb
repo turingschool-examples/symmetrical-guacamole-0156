@@ -1,10 +1,11 @@
 class GuestRoomsController < ApplicationController
   def create
-    guest = Guest.find(params[:id])
-    room = Room.find(params[:room_id])
-    gr = GuestRoom.create(guest_id: guest, room_id: room)
+    # gr = GuestRoom.create(guest_id: guest, room_id: room)
+    gr = GuestRoom.new(room_id: params[:room_id], guest_id: params[:id])
     # require 'pry'; binding.pry
+    # why new instead of create
     gr.save
-    redirect_to "/guests/#{guest.id}"
+    redirect_to "/guests/#{params[:id]}"
+
   end
 end
